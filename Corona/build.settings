@@ -1,0 +1,40 @@
+settings =
+{
+	orientation =
+	{
+		default = "portrait",
+		supported = { "portrait" }
+	},
+	android =
+	{
+		usesPermissions =
+		{
+			"android.permission.INTERNET",
+		},
+	},
+	iphone =
+	{
+		plist =
+		{
+			CFBundleIconFile = "Icon.png",
+			CFBundleIconFiles =
+			{
+				"Icon.png", 
+				"Icon@2x.png", 
+				"Icon-72.png", 
+				"Icon-72@2x.png", 
+			},
+			UIApplicationExitsOnSuspend = false,	-- must be false for single sign-on to work
+			FacebookAppId = "235285269832478",
+			CFBundleURLTypes =
+			{
+				{
+					CFBundleURLSchemes =
+					{
+						"fb235285269832478",	-- replace XXXXXXXXX with your facebook appId
+					}
+				}
+			}
+		}
+	}
+}
