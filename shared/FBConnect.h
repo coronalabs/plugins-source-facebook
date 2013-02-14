@@ -40,7 +40,7 @@ class FBConnect
 		virtual ~FBConnect();
 
 	public:
-		bool Initialize( lua_State *L, int listenerIndex );
+		void SetListener( lua_State *L, int listenerIndex );
 		void Finalize( lua_State *L );
 
 	protected:

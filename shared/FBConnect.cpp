@@ -72,19 +72,17 @@ FBConnect::~FBConnect()
 	CORONA_ASSERT( NULL == fListener );
 }
 
-bool
-FBConnect::Initialize( lua_State *L, int listenerIndex )
+void
+FBConnect::SetListener( lua_State *L, int listenerIndex )
 {
-	bool result = false;
-
-	if ( NULL == fListener
-		 && FBConnectEvent::IsListener( L, listenerIndex ) )
+	if ( ! CoronaLuaEqualRef( L, fListener, listenerIndex ) )
 	{
-		fListener = CoronaLuaNewRef( L, listenerIndex );
-		result = true;
-	}
+		CoronaLuaDeleteRef( L, fListener );
 
-	return result;
+		CORONA_ASSERT( FBConnectEvent::IsListener( L, listenerIndex ) );
+
+		fListener = CoronaLuaNewRef( L, listenerIndex );
+	}
 }
 
 void

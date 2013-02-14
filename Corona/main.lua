@@ -302,7 +302,10 @@ if ( appId ) then
 		-- call the login method of the FB session object, passing in a handler
 		-- to be called upon successful login.
 		fbCommand = SHOW_DIALOG
-		facebook.login( appId, listener, {"publish_stream"}  )
+		local listener2 = function( ... )
+			listener( ... )
+		end
+		facebook.login( appId, listener2, {"publish_stream"}  )
 	end
 	
 	local function logOut_onRelease( event )

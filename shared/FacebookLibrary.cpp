@@ -201,7 +201,7 @@ FacebookLibrary::login( lua_State *L )
 			FBConnect *connect = library->GetFBConnect();
 			if ( FBConnectEvent::IsListener( L, 2 ) )
 			{
-				connect->Initialize( L, 2 );
+				connect->SetListener( L, 2 );
 				connect->Login( appId, permissions, numPermissions );
 			}
 			else
