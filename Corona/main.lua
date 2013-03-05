@@ -321,8 +321,8 @@ if ( appId ) then
 	
 	-- "Post Photo with Facebook" button
 	local fbButton = widget.newButton{
-		default = "fbButton184.png",
-		over = "fbButtonOver184.png",
+		defaultFile = "fbButton184.png",
+		overFile = "fbButtonOver184.png",
 		onRelease = postPhoto_onRelease,
 		label = "  Post Photo",
 		labelColor = { default = { 255, 255, 255 } }
@@ -333,8 +333,8 @@ if ( appId ) then
 	
 	-- "Post Message with Facebook" button
 	local fbButton2 = widget.newButton{
-		default = "fbButton184.png",
-		over = "fbButtonOver184.png",
+		defaultFile = "fbButton184.png",
+		overFile = "fbButtonOver184.png",
 		onRelease = postMsg_onRelease,
 		label = "Post Msg",
 		labelColor = { default = { 255, 255, 255 } }
@@ -345,8 +345,8 @@ if ( appId ) then
 	
 	-- "Show Dialog Info with Facebook" button
 	local fbButton3 = widget.newButton{
-		default = "fbButton184.png",
-		over = "fbButtonOver184.png",
+		defaultFile = "fbButton184.png",
+		overFile = "fbButtonOver184.png",
 		onRelease = showDialog_onRelease,
 		label = "    Show Dialog",
 		labelColor = { default = { 255, 255, 255 } }
@@ -354,11 +354,11 @@ if ( appId ) then
 	fbButton3.x = 160
 	fbButton3.y = ButtonOrigY + ButtonYOffset * 2
 
-	
+
 	-- "Get User Info with Facebook" button
 	local fbButton4 = widget.newButton{
-		default = "fbButton184.png",
-		over = "fbButtonOver184.png",
+		defaultFile = "fbButton184.png",
+		overFile = "fbButtonOver184.png",
 		onRelease = getInfo_onRelease,
 		label = "Get User",
 		labelColor = { default = { 255, 255, 255 } }
@@ -368,8 +368,8 @@ if ( appId ) then
 	
 	-- "Logout with Facebook" button
 	local fbButton5 = widget.newButton{
-		default = "fbButton184.png",
-		over = "fbButtonOver184.png",
+		defaultFile = "fbButton184.png",
+		overFile = "fbButtonOver184.png",
 		onRelease = logOut_onRelease,
 		label = "Logout",
 		labelColor = { default = { 255, 255, 255 } }
