@@ -14,6 +14,10 @@
 #include "CoronaLua.h"
 #include "FBConnect.h"
 
+#import <UIKit/UIKit.h>
+#import <AddressBook/AddressBook.h>
+#import <AddressBookUI/AddressBookUI.h>
+
 // ----------------------------------------------------------------------------
 
 @class Facebook;
@@ -64,6 +68,7 @@ class IOSFBConnect : public FBConnect
 		virtual void Logout() const;
 		virtual void Request( lua_State *L, const char *path, const char *httpMethod, int x ) const;
 		virtual void ShowDialog( lua_State *L, int index ) const;
+		virtual void Show( lua_State *L ) const;
 
 	private:
 		id< CoronaRuntime > fRuntime;

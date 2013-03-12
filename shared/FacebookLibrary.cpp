@@ -53,6 +53,7 @@ class FacebookLibrary
 		static int logout( lua_State *L );
 		static int request( lua_State *L );
 		static int showDialog( lua_State *L );
+		static int show( lua_State *L );
 
 	private:
 		FBConnect *fFBConnect;
@@ -104,6 +105,7 @@ FacebookLibrary::Open( lua_State *L )
 		{ "logout", logout },
 		{ "request", request },
 		{ "showDialog", showDialog },
+		{ "show", show },
 
 		{ NULL, NULL }
 	};
@@ -258,6 +260,18 @@ FacebookLibrary::showDialog( lua_State *L )
 
 	connect->ShowDialog( L, 1 );
 
+	return 0;
+}
+
+// [Lua] facebook.show( option, [, params] )
+int
+FacebookLibrary::show( lua_State *L )
+{
+	Self *library = ToLibrary( L );
+	FBConnect *connect = library->GetFBConnect();
+
+	connect->Show( L );
+	
 	return 0;
 }
 

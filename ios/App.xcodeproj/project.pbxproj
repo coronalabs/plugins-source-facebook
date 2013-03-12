@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */; };
+		30B77C9C16E7843B0078FBEB /* fb.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30B77C9B16E7843B0078FBEB /* fb.lua */; };
+		30B77C9E16E784400078FBEB /* scrumptious.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30B77C9D16E784400078FBEB /* scrumptious.lua */; };
+		30BCB01A16ECC6CC007C9A23 /* CoronaResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */; };
 		A447B610165D72FB009EA762 /* AppCoronaDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */; };
 		A447B6671666FD02009EA762 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6641666FD02009EA762 /* MainWindow-iPad.xib */; };
 		A447B6681666FD02009EA762 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6651666FD02009EA762 /* MainWindow.xib */; };
@@ -66,6 +70,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		30B77C9B16E7843B0078FBEB /* fb.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fb.lua; sourceTree = SOURCE_ROOT; };
+		30B77C9D16E784400078FBEB /* scrumptious.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrumptious.lua; sourceTree = SOURCE_ROOT; };
+		30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CoronaResources.bundle; sourceTree = SOURCE_ROOT; };
 		A447B60E165D72FB009EA762 /* AppCoronaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoronaDelegate.h; sourceTree = SOURCE_ROOT; };
 		A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppCoronaDelegate.mm; sourceTree = SOURCE_ROOT; };
 		A447B6641666FD02009EA762 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "CoronaEnterprise/Corona/ios/resource/MainWindow-iPad.xib"; sourceTree = SOURCE_ROOT; };
@@ -176,6 +184,8 @@
 		A447B823166856C7009EA762 /* Corona */ = {
 			isa = PBXGroup;
 			children = (
+				30B77C9B16E7843B0078FBEB /* fb.lua */,
+				30B77C9D16E784400078FBEB /* scrumptious.lua */,
 				A447B824166856F3009EA762 /* main.lua */,
 			);
 			name = Corona;
@@ -185,6 +195,7 @@
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
+				303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */,
 				A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */,
 				A484112715114F700074BD57 /* App */,
 				A447B823166856C7009EA762 /* Corona */,
@@ -243,6 +254,7 @@
 		A484112715114F700074BD57 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */,
 				A484112915114F700074BD57 /* App-Info.plist */,
 				A484112A15114F700074BD57 /* InfoPlist.strings */,
 				A484112D15114F700074BD57 /* main.mm */,
@@ -313,7 +325,7 @@
 		A484111015114F700074BD57 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = A484111315114F700074BD57 /* Build configuration list for PBXProject "App" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -358,6 +370,10 @@
 				A447B6681666FD02009EA762 /* MainWindow.xib in Resources */,
 				A447B66A1666FD43009EA762 /* CoronaSDK3rdPartyLicenses.txt in Resources */,
 				A4C2446A1683F5F200C395D1 /* FacebookSDKResources.bundle in Resources */,
+				303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */,
+				30B77C9C16E7843B0078FBEB /* fb.lua in Resources */,
+				30B77C9E16E784400078FBEB /* scrumptious.lua in Resources */,
+				30BCB01A16ECC6CC007C9A23 /* CoronaResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,6 +477,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"ARCHS[sdk=iphoneos*]" = armv7;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -474,6 +494,7 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
@@ -487,12 +508,17 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"ARCHS[sdk=iphoneos*]" = armv7;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

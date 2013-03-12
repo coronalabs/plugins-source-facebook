@@ -52,6 +52,7 @@ static const char kFBConnectEventName[] = "fbconnect";
 	return self;
 }
 
+
 // FBDialogDelegate
 // ----------------------------------------------------------------------------
 
@@ -551,6 +552,428 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 
 	}
 }
+
+    
+void
+IOSFBConnect::Show( lua_State *L ) const
+{
+	//
+	static int callbackRef = 0;
+
+	// Set reference to onComplete function
+	if ( lua_gettop( L ) > 1 )
+	{
+		// Set the delegates callbackRef to reference the onComplete function (if it exists)
+		if ( lua_isfunction( L, lua_gettop( L ) ) )
+		{
+			callbackRef = luaL_ref( L, LUA_REGISTRYINDEX );
+		}
+	}	
+		
+	const char *chosenOption = luaL_checkstring( L, 1 );
+
+	// Places
+	if ( 0 == strcmp( "place", chosenOption ) )
+	{
+		static float longitude = 48.857875;
+		static float latitude = 2.294635;
+		static const char *chosenTitle;
+		static const char *searchText;
+		static int resultsLimit = 50;
+		static int radiusInMeters = 1000;
+	
+		NSString *placePickerTitle = [NSString stringWithUTF8String:"Select a Place"];
+
+		// Get the name key
+		if ( ! lua_isnoneornil( L, -1 ) )
+		{
+			// Options table exists, retrieve latitude key
+			lua_getfield( L, -1, "longitude" );
+			
+			// If the key has been specified, is not nil and it is a number then check it.
+			if ( ! lua_isnoneornil( L, -1 ) && lua_isnumber( L, -1 ) )
+			{
+				// Enforce number
+				luaL_checktype( L, -1, LUA_TNUMBER );
+	
+				// Check the string
+				longitude = luaL_checknumber( L, -1 );
+			}
+
+			// Options table exists, retrieve latitude key
+			lua_getfield( L, -2, "latitude" );
+
+			// If the key has been specified, is not nil and it is a number then check it.
+			if ( ! lua_isnoneornil( L, -1 ) && lua_isnumber( L, -1 ) )
+			{			
+				// Enforce number
+				luaL_checktype( L, -1, LUA_TNUMBER );
+	
+				// Check the number
+				latitude = luaL_checknumber( L, -1 );
+			}
+		
+			// Options table exists, retrieve title key
+			lua_getfield( L, -3, "title" );
+		
+			// If the key has been specified, is not nil and it is a string then check it.
+			if ( ! lua_isnoneornil( L, -1 ) && lua_isstring( L, -1 ) )
+			{
+				// Enforce string
+				luaL_checktype( L, -1, LUA_TSTRING );
+
+				// Check the string
+				chosenTitle = luaL_checkstring( L, -1 );
+			}
+		
+			// Set the controller's title
+			if ( chosenTitle )
+			{
+				placePickerTitle = [NSString stringWithUTF8String:chosenTitle];
+			}
+			
+			// Options table exists, retrieve searchText key
+			lua_getfield( L, -4, "searchText" );
+		
+			// If the key has been specified, is not nil and it is a string then check it.
+			if ( ! lua_isnoneornil( L, -1 ) && lua_isstring( L, -1 ) )
+			{
+				// Enforce string
+				luaL_checktype( L, -1, LUA_TSTRING );
+
+				// Check the string
+				searchText = luaL_checkstring( L, -1 );
+			}
+			else
+			{
+				searchText = "restuaruant";
+			}
+			
+			// Options table exists, retrieve resultsLimit key
+			lua_getfield( L, -5, "resultsLimit" );
+		
+			// If the key has been specified, is not nil and it is a string then check it.
+			if ( ! lua_isnoneornil( L, -1 ) && lua_isnumber( L, -1 ) )
+			{
+				// Enforce number
+				luaL_checktype( L, -1, LUA_TNUMBER );
+
+				// Check the number
+				resultsLimit = luaL_checknumber( L, -1 );
+			}
+			
+			// Options table exists, retrieve radiusInMeters key
+			lua_getfield( L, -6, "radiusInMeters" );
+		
+			// If the key has been specified, is not nil and it is a string then check it.
+			if ( ! lua_isnoneornil( L, -1 ) && lua_isnumber( L, -1 ) )
+			{
+				// Enforce number
+				luaL_checktype( L, -1, LUA_TNUMBER );
+
+				// Check the number
+				radiusInMeters = luaL_checknumber( L, -1 );
+			}
+		}
+		
+		// Set the controller's title
+		if ( chosenTitle )
+		{
+			placePickerTitle = [NSString stringWithUTF8String:chosenTitle];
+		}
+		
+		// Create the place picker view controller
+		FBPlacePickerViewController *placePicker = [[FBPlacePickerViewController alloc] init];
+		placePicker.title = placePickerTitle;
+		placePicker.searchText = [NSString stringWithUTF8String:searchText];
+		
+		// Set the coordinates
+		CLLocationCoordinate2D coordinates =
+            CLLocationCoordinate2DMake( longitude, latitude );
+		
+		// Setup the cache descriptor
+		FBCacheDescriptor *placeCacheDescriptor =
+            [FBPlacePickerViewController
+             cacheDescriptorWithLocationCoordinate:coordinates
+             radiusInMeters:radiusInMeters
+             searchText:placePicker.searchText
+             resultsLimit:resultsLimit
+             fieldsForRequest:nil];
+        
+		// Configure the cache descriptor
+		[placePicker configureUsingCachedDescriptor:placeCacheDescriptor];
+		// Load the data
+		[placePicker loadData];
+		
+		// Show the view controller
+		[placePicker presentModallyFromViewController:fRuntime.appViewController
+												animated:YES
+												handler:^(FBViewController *sender, BOOL donePressed)
+												{
+													if (donePressed)
+													{
+														//NSLog( @"%@", placePicker.selection );
+														
+														/*
+																	List of keys returned
+																	
+																	"category" - string
+																	"id" - number
+																	"location" - table ie.
+																	location =
+																	{
+																		"city" - string,
+																		"country" - string.
+																		"latitude" - string.
+																		"longitude" - string.
+																		"state" - string.
+																		"street" - string.
+																		"zip" - string.
+																	}
+																	
+																	"name" - string.
+																	
+																	"picture" - table. .ie
+																	picture = 
+																	{
+																		data = 
+																		{
+																			"is_silhouette" - bool
+																			"url" - string
+																		}
+																	}
+																	
+																	"were_here_count" - number
+														
+																
+																	*/
+														
+														// If there is a callback to exectute
+														if ( 0 != callbackRef )
+														{
+															// Push the onComplete function onto the stack
+															lua_rawgeti( L, LUA_REGISTRYINDEX, callbackRef );
+														
+															// event table
+															lua_newtable( L );
+															
+															// event.data table
+															lua_newtable( L );
+															
+															// Get the properties from the graph
+														
+															const char *placeCategory = [(NSString*) [placePicker.selection objectForKey:@"category"] UTF8String];
+															lua_pushstring( L, placeCategory );
+															lua_setfield( L, -2, "category" );
+															
+															const char *placeId = [(NSString*) [placePicker.selection objectForKey:@"id"] UTF8String];
+															lua_pushstring( L, placeId );
+															lua_setfield( L, -2, "id" );
+															
+															const char *placeName = [(NSString*) [placePicker.selection objectForKey:@"name"] UTF8String];
+															lua_pushstring( L, placeName );
+															lua_setfield( L, -2, "name" );
+															
+															static int placeWereHere = (int)[placePicker.selection objectForKey:@"were_here_count"];
+															lua_pushnumber( L, placeWereHere );
+															lua_setfield( L, -2, "wereHere" );
+																														
+															const char *placeCity = [(NSString*) [[placePicker.selection objectForKey:@"location"] valueForKey:@"city"] UTF8String];
+															lua_pushstring( L, placeCity );
+															lua_setfield( L, -2, "city" );
+															
+															const char *placeCountry = [(NSString*) [[placePicker.selection objectForKey:@"location"] valueForKey:@"country"] UTF8String];
+															lua_pushstring( L, placeCountry );
+															lua_setfield( L, -2, "country" );
+															
+															NSDecimalNumber *thelatitude = [[placePicker.selection objectForKey:@"location"] valueForKey:@"latitude"];
+															static float placeLatitude = [(NSDecimalNumber*)thelatitude floatValue];
+															lua_pushnumber( L, placeLatitude );
+															lua_setfield( L, -2, "latitude" );
+															
+															NSDecimalNumber *thelongitude = [[placePicker.selection objectForKey:@"location"] valueForKey:@"longitude"];
+															static float placeLongitude = [(NSDecimalNumber*)thelongitude floatValue];
+															lua_pushnumber( L, placeLongitude );
+															lua_setfield( L, -2, "longitude" );
+															
+															const char *placeState = [(NSString*) [[placePicker.selection objectForKey:@"location"] valueForKey:@"state"] UTF8String];
+															lua_pushstring( L, placeState );
+															lua_setfield( L, -2, "state" );
+															
+															const char *placeStreet = [(NSString*) [[placePicker.selection objectForKey:@"location"] valueForKey:@"street"] UTF8String];
+															lua_pushstring( L, placeStreet );
+															lua_setfield( L, -2, "street" );
+															
+															const char *placeZip = [(NSString*) [[placePicker.selection objectForKey:@"location"] valueForKey:@"zip"] UTF8String];
+															lua_pushstring( L, placeZip );
+															lua_setfield( L, -2, "zip" );
+															
+															// Create picture table
+															lua_newtable( L );
+															// Create picture.data table
+															lua_newtable( L );
+																	
+															// Set the place picture.data 'is_silhouette' property
+															bool placeIsSillhouette = (bool)[[[placePicker.selection objectForKey:@"picture"] valueForKey:@"data"] valueForKey:@"is_silhouette"];
+															lua_pushboolean( L, placeIsSillhouette );
+															lua_setfield( L, -2, "isSilhouette" );
+																	
+															// Set the place picture.data 'url' property
+															const char *placeUrl = [[[[placePicker.selection objectForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"] UTF8String];
+															lua_pushstring( L, placeUrl );
+															lua_setfield( L, -2, "url" );
+																	
+															// Set the data nested table
+															lua_setfield(L, -2, "data" );
+															// Set the picture outer table
+															lua_setfield( L, -2, "picture" );
+		
+															// Set event.data
+															lua_setfield( L, -2, "data" );
+														
+															// Call the onComplete function
+															Corona::Lua::DoCall( L, 1, 1 );
+		
+															// Free the refrence
+															lua_unref( L, callbackRef );
+														}
+													}
+												}];
+												
+	}
+	// Friends
+	else if ( 0 == strcmp( "friends", chosenOption ) )
+	{
+		FBFriendPickerViewController *friendPicker = [[FBFriendPickerViewController alloc] init];
+	
+		// Set up the friend picker to sort and display names the same way as the
+		// iOS Address Book does.
+            
+		// Need to call ABAddressBookCreate in order for the next two calls to do anything.
+		ABAddressBookRef addressBook = ABAddressBookCreate();
+		ABPersonSortOrdering sortOrdering = ABPersonGetSortOrdering();
+		ABPersonCompositeNameFormat nameFormat = ABPersonGetCompositeNameFormat();
+            
+		friendPicker.sortOrdering = (sortOrdering == kABPersonSortByFirstName) ? FBFriendSortByFirstName : FBFriendSortByLastName;
+		friendPicker.displayOrdering = (nameFormat == kABPersonCompositeNameFormatFirstNameFirst) ? FBFriendDisplayByFirstName : FBFriendDisplayByLastName;
+        
+		// Load the data
+		[friendPicker loadData];
+		
+		// Show the view controller
+		[friendPicker presentModallyFromViewController:fRuntime.appViewController
+                                                  animated:YES
+                                                   handler:^( FBViewController *sender, BOOL donePressed )
+												   {
+														if ( donePressed )
+														{
+															//NSDictionary *value = [friendPicker.selection objectAtIndex:1];
+															//NSLog( @"%@", [value objectForKey:@"name"] );
+															/*
+																	List of keys returned
+																	
+																	"first_name" - string
+																	"last_name" - string
+																	"name" - string (full name)
+																	"id" - number
+																	"picture" - table containing subtable ie
+																	picture =
+																	{
+																		data = 
+																		{
+																			"is_silhouette" - number 0 false, 1 true
+																			"url" - url to friend picture
+																		}
+																	}
+																	*/
+																	
+																	//NSLog( @"value of data silhouette is %@", [[[items valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"is_silhouette"] );
+															
+															// If there is a callback to exectute
+															if ( 0 != callbackRef )
+															{														
+																// Push the onComplete function onto the stack
+																lua_rawgeti( L, LUA_REGISTRYINDEX, callbackRef );
+																																
+																// Event table
+																lua_newtable( L );
+																
+																// event.data table
+																lua_newtable( L );
+																
+																// Total number of items (friends) in the dictionary
+																int numOfItems = [friendPicker.selection count];
+																																
+																// Loop through the dictionary and pass the data back to lua
+																for ( int i = 0; i < numOfItems; i ++ )
+																{
+																	// Create a table to hold the current friend data
+																	lua_newtable( L );
+																																	
+																	// Get the properties from the current dictionary index
+																	NSDictionary *items = [friendPicker.selection objectAtIndex:i];
+																																																			
+																	// Set the friend's first name
+																	const char *friendFirstName = [[items objectForKey:@"first_name"] UTF8String];
+																	lua_pushstring( L, friendFirstName );
+																	lua_setfield( L, -2, "firstName" );
+																	
+																	// Set the friend's last name
+																	const char *friendLastName = [[items objectForKey:@"last_name"] UTF8String];
+																	lua_pushstring( L, friendLastName );
+																	lua_setfield( L, -2, "lastName" );
+																	
+																	// Set the friend's full name
+																	const char *friendFullName = [[items objectForKey:@"name"] UTF8String];
+																	lua_pushstring( L, friendFullName );
+																	lua_setfield( L, -2, "fullName" );
+																	
+																	// Set the friend's id
+																	const char *friendId = [[items objectForKey:@"id"] UTF8String];
+																	lua_pushstring( L, friendId );
+																	lua_setfield( L, -2, "id" );
+																															
+																	// Create picture table
+																	lua_newtable( L );
+																	// Create picture.data table
+																	lua_newtable( L );																	
+																	
+																	// Set the friends picture.data 'is_silhouette' property
+																	id isSillhouette = [[[items valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"is_silhouette"];																	
+																	BOOL friendIsSillhouette = [(NSNumber*)isSillhouette boolValue];
+																	lua_pushboolean( L, friendIsSillhouette );
+																	lua_setfield( L, -2, "isSilhouette" );
+																	
+																	// Set the friends picture.data 'url' property
+																	const char *friendUrl = [[[[items valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"] UTF8String];
+																	lua_pushstring( L, friendUrl );
+																	lua_setfield( L, -2, "url" );
+																	
+																	// Set the data nested table
+																	lua_setfield(L, -2, "data" );
+																	// Set the picture outer table
+																	lua_setfield( L, -2, "picture" );
+																	
+																	// Set the main table
+																	lua_rawseti( L, -2, i + 1 );																	
+																}
+																																
+																// Set event.data
+																lua_setfield( L, -2, "data" );
+
+																// Call the onComplete function
+																Corona::Lua::DoCall( L, 1, 1 );
+		
+																// Free the refrence
+																lua_unref( L, callbackRef );
+															}
+														}
+                                                   }];
+
+		CFRelease( addressBook );
+	}
+}
+
 
 // ----------------------------------------------------------------------------
 
