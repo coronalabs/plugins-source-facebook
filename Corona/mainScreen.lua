@@ -101,8 +101,8 @@ function scene:createScene( event )
 	{
 		width = 60,
 		height = 30,
-		defaultFile = "default.png",
-		overFile = "over.png",
+		defaultFile = "assets/default.png",
+		overFile = "assets/over.png",
 		label = "Settings",
 		labelColor = 
 		{
