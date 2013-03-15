@@ -56,7 +56,6 @@ class FBConnect
 		virtual void Logout() const = 0;
 		virtual void Request( lua_State *L, const char *path, const char *httpMethod, int x ) const = 0;
 		virtual void ShowDialog( lua_State *L, int index ) const = 0;
-		virtual void Show( lua_State *L ) const = 0;
 
 	private:
 		CoronaLuaRef fListener;

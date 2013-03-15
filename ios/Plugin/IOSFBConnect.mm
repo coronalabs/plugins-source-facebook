@@ -495,86 +495,25 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 
 	NSString *action = nil;
 	NSDictionary *dict = nil;
-
-	if ( lua_isstring( L, 1 ) )
-	{
-		// New API
-		const char *str = lua_tostring( L, 1 );
-		if ( LUA_TSTRING == lua_type( L, 1 ) && str )
-		{
-			action = [NSString stringWithUTF8String:str];
-		}
-
-		if ( LUA_TTABLE == lua_type( L, 2 ) )
-		{
-			dict = CoronaLuaCreateDictionary( L, 2 );
-		}
-	}
-	else if ( lua_istable( L, 1 ) )
-	{
-		// Old API
-		CORONA_LOG_WARNING( "facebook.showDialog( { action= } ) has been deprecated in favor of facebook.showDialog( action [, params] )" );
-
-		// Convert common params
-		lua_getfield( L, index, "action" );
-		const char *str = lua_tostring( L, -1 );
-		if ( LUA_TSTRING == lua_type( L, -1 ) && str )
-		{
-			action = [NSString stringWithUTF8String:str];
-		}
-		lua_pop( L, 1 );
-
-		lua_getfield( L, index, "params" );
-		if ( LUA_TTABLE == lua_type( L, -1 ) )
-		{
-			int t = lua_gettop( L ); // get index of table
-
-			dict = CoronaLuaCreateDictionary( L, t );
-		}
-		lua_pop( L, 1 );
-	}
-	else
-	{
-		CORONA_LOG_WARNING( "Invalid parameters passed to facebook.showDialog( action [, params] )" );
-	}
-	
-	if ( CORONA_VERIFY( action ) )
-	{
-		if ( dict )
-		{
-			NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:dict];
-			[fFacebook dialog:action andParams:params andDelegate:fFacebookDelegate];
-		}
-		else
-		{
-			[fFacebook dialog:action andDelegate:fFacebookDelegate];
-		}
-
-	}
-}
-
-    
-void
-IOSFBConnect::Show( lua_State *L ) const
-{
-	//
-	static int callbackRef = 0;
-
-	// Set reference to onComplete function
-	if ( lua_gettop( L ) > 1 )
-	{
-		// Set the delegates callbackRef to reference the onComplete function (if it exists)
-		if ( lua_isfunction( L, lua_gettop( L ) ) )
-		{
-			callbackRef = luaL_ref( L, LUA_REGISTRYINDEX );
-		}
-	}	
 		
 	const char *chosenOption = luaL_checkstring( L, 1 );
 
 	// Places
 	if ( 0 == strcmp( "place", chosenOption ) )
 	{
+		// A reference to our callback handler
+		static int callbackRef = 0;
+
+		// Set reference to onComplete function
+		if ( lua_gettop( L ) > 1 )
+		{
+			// Set the delegates callbackRef to reference the onComplete function (if it exists)
+			if ( lua_isfunction( L, lua_gettop( L ) ) )
+			{
+				callbackRef = luaL_ref( L, LUA_REGISTRYINDEX );
+			}
+		}
+	
 		static float longitude = 48.857875;
 		static float latitude = 2.294635;
 		static const char *chosenTitle;
@@ -844,6 +783,19 @@ IOSFBConnect::Show( lua_State *L ) const
 	// Friends
 	else if ( 0 == strcmp( "friends", chosenOption ) )
 	{
+		// A reference to our callback handler
+		static int callbackRef = 0;
+
+		// Set reference to onComplete function
+		if ( lua_gettop( L ) > 1 )
+		{
+			// Set the delegates callbackRef to reference the onComplete function (if it exists)
+			if ( lua_isfunction( L, lua_gettop( L ) ) )
+			{
+				callbackRef = luaL_ref( L, LUA_REGISTRYINDEX );
+			}
+		}
+		
 		FBFriendPickerViewController *friendPicker = [[FBFriendPickerViewController alloc] init];
 	
 		// Set up the friend picker to sort and display names the same way as the
@@ -972,8 +924,67 @@ IOSFBConnect::Show( lua_State *L ) const
 
 		CFRelease( addressBook );
 	}
-}
+	
+	// Standard facebook.showDialog
+	else
+	{
+		if ( lua_isstring( L, 1 ) )
+		{
+			// New API
+			const char *str = lua_tostring( L, 1 );
+			if ( LUA_TSTRING == lua_type( L, 1 ) && str )
+			{
+				action = [NSString stringWithUTF8String:str];
+			}
 
+			if ( LUA_TTABLE == lua_type( L, 2 ) )
+			{
+				dict = CoronaLuaCreateDictionary( L, 2 );
+			}
+		}
+		else if ( lua_istable( L, 1 ) )
+		{
+			// Old API
+			CORONA_LOG_WARNING( "facebook.showDialog( { action= } ) has been deprecated in favor of facebook.showDialog( action [, params] )" );
+
+			// Convert common params
+			lua_getfield( L, index, "action" );
+			const char *str = lua_tostring( L, -1 );
+			if ( LUA_TSTRING == lua_type( L, -1 ) && str )
+			{
+				action = [NSString stringWithUTF8String:str];
+			}
+			lua_pop( L, 1 );
+
+			lua_getfield( L, index, "params" );
+			if ( LUA_TTABLE == lua_type( L, -1 ) )
+			{
+				int t = lua_gettop( L ); // get index of table
+
+				dict = CoronaLuaCreateDictionary( L, t );
+			}
+			lua_pop( L, 1 );
+		}
+		else
+		{
+			CORONA_LOG_WARNING( "Invalid parameters passed to facebook.showDialog( action [, params] )" );
+		}
+		
+		if ( CORONA_VERIFY( action ) )
+		{
+			if ( dict )
+			{
+				NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:dict];
+				[fFacebook dialog:action andParams:params andDelegate:fFacebookDelegate];
+			}
+			else
+			{
+				[fFacebook dialog:action andDelegate:fFacebookDelegate];
+			}
+
+		}
+	}
+}
 
 // ----------------------------------------------------------------------------
 

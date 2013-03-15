@@ -135,8 +135,8 @@
 		3070C55B16F3C537002B4870 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3070C55C16F3C537002B4870 /* loginScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = loginScreen.lua; sourceTree = "<group>"; };
 		3070C55D16F3C537002B4870 /* logoutScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logoutScreen.lua; sourceTree = "<group>"; };
-		3070C55E16F3C537002B4870 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.lua; sourceTree = "<group>"; };
-		3070C55F16F3C537002B4870 /* mainScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainScreen.lua; sourceTree = "<group>"; };
+		3070C55E16F3C537002B4870 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
+		3070C55F16F3C537002B4870 /* mainScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainScreen.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
 		30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CoronaResources.bundle; sourceTree = SOURCE_ROOT; };
 		A447B60E165D72FB009EA762 /* AppCoronaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoronaDelegate.h; sourceTree = SOURCE_ROOT; };
 		A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppCoronaDelegate.mm; sourceTree = SOURCE_ROOT; };

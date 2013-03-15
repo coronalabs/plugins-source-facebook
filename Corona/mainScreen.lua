@@ -284,12 +284,12 @@ function scene:createScene( event )
 
 	-- Pick place
 	local function pickPlace( event ) 
-		facebook.show( "place", { title = "Select A Restaurant", longitude = 48.857875, latitude = 2.294635, searchText = "restaurant", resultsLimit = 20, radiusInMeters = 2000 }, onCompletePlaces )
+		facebook.showDialog( "place", { title = "Select A Restaurant", longitude = 48.857875, latitude = 2.294635, searchText = "restaurant", resultsLimit = 20, radiusInMeters = 2000 }, onCompletePlaces )
 	end
 
 	-- Show friends
 	local function pickFriends( event )
-		facebook.show( "friends", onCompleteFriends )
+		facebook.showDialog( "friends", onCompleteFriends )
 	end
 
 	-- Pick meal
