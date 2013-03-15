@@ -40,11 +40,11 @@ mkdir -p "$OUTPUT_DIR"
 checkError
 
 # iOS
-xcodebuild -project "$path/Plugin.xcodeproj" -target $TARGET -configuration $CONFIG
+xcodebuild -project "$path/Plugin.xcodeproj" -target $TARGET -configuration $CONFIG -sdk iphoneos6.0
 checkError
 
 # Xcode Simulator
-xcodebuild -project "$path/Plugin.xcodeproj" -target $TARGET -configuration $CONFIG -sdk iphonesimulator6.1
+xcodebuild -project "$path/Plugin.xcodeproj" -target $TARGET -configuration $CONFIG -sdk iphonesimulator6.0
 checkError
 
 # create universal binary
