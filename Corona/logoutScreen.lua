@@ -47,7 +47,7 @@ function scene:createScene( event )
 	group:insert( background )
 	
 	-- Show facebook logo
-	local facebookLogo = display.newImageRect( "facebook.png", 196, 40 )
+	local facebookLogo = display.newImageRect( "assets/facebook.png", 196, 40 )
 	facebookLogo.x = display.contentCenterX
 	facebookLogo.y = storyboard.navBar.y + storyboard.navBar.contentHeight * 0.5 + facebookLogo.contentHeight + 10
 	group:insert( facebookLogo )
@@ -86,8 +86,8 @@ function scene:createScene( event )
 	{
 		width = 90,
 		height = 30,
-		defaultFile = "back.png",
-		overFile = "backOver.png",
+		defaultFile = "assets/back.png",
+		overFile = "assets/backOver.png",
 		label = "Scrumptious",
 		labelColor = 
 		{

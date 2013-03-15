@@ -301,9 +301,9 @@ function scene:createScene( event )
 	-- Setup the items table
 	items = 
 	{
-		{ image = "action-eating.png", title = "What are you eating?", description = "Select one", onTouch = pickMeal },
-		{ image = "action-location.png", title = "Where are you?", description = "Select one", onTouch = pickPlace },
-		{ image = "action-people.png", title = "With whom?", description = "Select friends", onTouch = pickFriends },
+		{ image = "assets/action-eating.png", title = "What are you eating?", description = "Select one", onTouch = pickMeal },
+		{ image = "assets/action-location.png", title = "Where are you?", description = "Select one", onTouch = pickPlace },
+		{ image = "assets/action-people.png", title = "With whom?", description = "Select friends", onTouch = pickFriends },
 	}
 
 
@@ -446,7 +446,7 @@ function scene:createScene( event )
 			top = display.statusBarHeight + 64,
 			width = display.contentWidth - 40,
 			height = 300,
-			maskFile = "actionSheetMask.png",
+			maskFile = "assets/actionSheetMask.png",
 			onRowRender = onRowRender,
 			onRowTouch = onRowTouch,
 		}
@@ -472,7 +472,7 @@ function scene:createScene( event )
 		gradientRect.alpha = 0.25
 		group:insert( gradientRect )
 
-		local underlayBorder = display.newImageRect( group, "actionSheetBorder.png", 300, 330 )
+		local underlayBorder = display.newImageRect( group, "assets/actionSheetBorder.png", 300, 330 )
 		underlayBorder.x = gradientRect.x + 1
 		underlayBorder.y = gradientRect.y
 		underlayBorder:toBack()
