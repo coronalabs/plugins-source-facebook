@@ -8,8 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */; };
-		30B77C9C16E7843B0078FBEB /* fb.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30B77C9B16E7843B0078FBEB /* fb.lua */; };
-		30B77C9E16E784400078FBEB /* scrumptious.lua in Resources */ = {isa = PBXBuildFile; fileRef = 30B77C9D16E784400078FBEB /* scrumptious.lua */; };
+		3070C56016F3C537002B4870 /* action-eating.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C53E16F3C537002B4870 /* action-eating.png */; };
+		3070C56116F3C537002B4870 /* action-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C53F16F3C537002B4870 /* action-location.png */; };
+		3070C56216F3C537002B4870 /* action-people.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54016F3C537002B4870 /* action-people.png */; };
+		3070C56316F3C537002B4870 /* actionSheetBorder.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54116F3C537002B4870 /* actionSheetBorder.png */; };
+		3070C56416F3C537002B4870 /* actionSheetMask.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54216F3C537002B4870 /* actionSheetMask.png */; };
+		3070C56516F3C537002B4870 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54316F3C537002B4870 /* back.png */; };
+		3070C56616F3C537002B4870 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54416F3C537002B4870 /* back@2x.png */; };
+		3070C56716F3C537002B4870 /* backOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54516F3C537002B4870 /* backOver.png */; };
+		3070C56816F3C537002B4870 /* backOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54616F3C537002B4870 /* backOver@2x.png */; };
+		3070C56916F3C537002B4870 /* default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54716F3C537002B4870 /* default.png */; };
+		3070C56A16F3C537002B4870 /* default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54816F3C537002B4870 /* default@2x.png */; };
+		3070C56B16F3C537002B4870 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54916F3C537002B4870 /* facebook.png */; };
+		3070C56C16F3C537002B4870 /* over.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54A16F3C537002B4870 /* over.png */; };
+		3070C56D16F3C537002B4870 /* over@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54B16F3C537002B4870 /* over@2x.png */; };
+		3070C56E16F3C537002B4870 /* scrumptious_logo_large.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54C16F3C537002B4870 /* scrumptious_logo_large.png */; };
+		3070C56F16F3C537002B4870 /* build.settings in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54D16F3C537002B4870 /* build.settings */; };
+		3070C57016F3C537002B4870 /* config.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54E16F3C537002B4870 /* config.lua */; };
+		3070C57116F3C537002B4870 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C54F16F3C537002B4870 /* facebook.png */; };
+		3070C57216F3C537002B4870 /* facebook_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55016F3C537002B4870 /* facebook_bkg.png */; };
+		3070C57316F3C537002B4870 /* fb.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55116F3C537002B4870 /* fb.lua */; };
+		3070C57416F3C537002B4870 /* fbButton184.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55216F3C537002B4870 /* fbButton184.png */; };
+		3070C57516F3C537002B4870 /* fbButtonOver184.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55316F3C537002B4870 /* fbButtonOver184.png */; };
+		3070C57616F3C537002B4870 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55416F3C537002B4870 /* Icon-72.png */; };
+		3070C57716F3C537002B4870 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55516F3C537002B4870 /* Icon-72@2x.png */; };
+		3070C57816F3C537002B4870 /* Icon-hdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55616F3C537002B4870 /* Icon-hdpi.png */; };
+		3070C57916F3C537002B4870 /* Icon-ldpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55716F3C537002B4870 /* Icon-ldpi.png */; };
+		3070C57A16F3C537002B4870 /* Icon-mdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55816F3C537002B4870 /* Icon-mdpi.png */; };
+		3070C57B16F3C537002B4870 /* Icon-xhdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55916F3C537002B4870 /* Icon-xhdpi.png */; };
+		3070C57C16F3C537002B4870 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55A16F3C537002B4870 /* Icon.png */; };
+		3070C57D16F3C537002B4870 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55B16F3C537002B4870 /* Icon@2x.png */; };
+		3070C57E16F3C537002B4870 /* loginScreen.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55C16F3C537002B4870 /* loginScreen.lua */; };
+		3070C57F16F3C537002B4870 /* logoutScreen.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55D16F3C537002B4870 /* logoutScreen.lua */; };
+		3070C58016F3C537002B4870 /* main.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55E16F3C537002B4870 /* main.lua */; };
+		3070C58116F3C537002B4870 /* mainScreen.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55F16F3C537002B4870 /* mainScreen.lua */; };
 		30BCB01A16ECC6CC007C9A23 /* CoronaResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */; };
 		A447B610165D72FB009EA762 /* AppCoronaDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */; };
 		A447B6671666FD02009EA762 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6641666FD02009EA762 /* MainWindow-iPad.xib */; };
@@ -71,8 +103,40 @@
 
 /* Begin PBXFileReference section */
 		303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		30B77C9B16E7843B0078FBEB /* fb.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fb.lua; sourceTree = SOURCE_ROOT; };
-		30B77C9D16E784400078FBEB /* scrumptious.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = scrumptious.lua; sourceTree = SOURCE_ROOT; };
+		3070C53E16F3C537002B4870 /* action-eating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-eating.png"; sourceTree = "<group>"; };
+		3070C53F16F3C537002B4870 /* action-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-location.png"; sourceTree = "<group>"; };
+		3070C54016F3C537002B4870 /* action-people.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-people.png"; sourceTree = "<group>"; };
+		3070C54116F3C537002B4870 /* actionSheetBorder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actionSheetBorder.png; sourceTree = "<group>"; };
+		3070C54216F3C537002B4870 /* actionSheetMask.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = actionSheetMask.png; sourceTree = "<group>"; };
+		3070C54316F3C537002B4870 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		3070C54416F3C537002B4870 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
+		3070C54516F3C537002B4870 /* backOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backOver.png; sourceTree = "<group>"; };
+		3070C54616F3C537002B4870 /* backOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backOver@2x.png"; sourceTree = "<group>"; };
+		3070C54716F3C537002B4870 /* default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default.png; sourceTree = "<group>"; };
+		3070C54816F3C537002B4870 /* default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default@2x.png"; sourceTree = "<group>"; };
+		3070C54916F3C537002B4870 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		3070C54A16F3C537002B4870 /* over.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = over.png; sourceTree = "<group>"; };
+		3070C54B16F3C537002B4870 /* over@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "over@2x.png"; sourceTree = "<group>"; };
+		3070C54C16F3C537002B4870 /* scrumptious_logo_large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scrumptious_logo_large.png; sourceTree = "<group>"; };
+		3070C54D16F3C537002B4870 /* build.settings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = build.settings; sourceTree = "<group>"; };
+		3070C54E16F3C537002B4870 /* config.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = config.lua; sourceTree = "<group>"; };
+		3070C54F16F3C537002B4870 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
+		3070C55016F3C537002B4870 /* facebook_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_bkg.png; sourceTree = "<group>"; };
+		3070C55116F3C537002B4870 /* fb.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fb.lua; sourceTree = "<group>"; };
+		3070C55216F3C537002B4870 /* fbButton184.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbButton184.png; sourceTree = "<group>"; };
+		3070C55316F3C537002B4870 /* fbButtonOver184.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fbButtonOver184.png; sourceTree = "<group>"; };
+		3070C55416F3C537002B4870 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		3070C55516F3C537002B4870 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		3070C55616F3C537002B4870 /* Icon-hdpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-hdpi.png"; sourceTree = "<group>"; };
+		3070C55716F3C537002B4870 /* Icon-ldpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-ldpi.png"; sourceTree = "<group>"; };
+		3070C55816F3C537002B4870 /* Icon-mdpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-mdpi.png"; sourceTree = "<group>"; };
+		3070C55916F3C537002B4870 /* Icon-xhdpi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-xhdpi.png"; sourceTree = "<group>"; };
+		3070C55A16F3C537002B4870 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		3070C55B16F3C537002B4870 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		3070C55C16F3C537002B4870 /* loginScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = loginScreen.lua; sourceTree = "<group>"; };
+		3070C55D16F3C537002B4870 /* logoutScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logoutScreen.lua; sourceTree = "<group>"; };
+		3070C55E16F3C537002B4870 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.lua; sourceTree = "<group>"; };
+		3070C55F16F3C537002B4870 /* mainScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainScreen.lua; sourceTree = "<group>"; };
 		30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CoronaResources.bundle; sourceTree = SOURCE_ROOT; };
 		A447B60E165D72FB009EA762 /* AppCoronaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoronaDelegate.h; sourceTree = SOURCE_ROOT; };
 		A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppCoronaDelegate.mm; sourceTree = SOURCE_ROOT; };
@@ -80,7 +144,6 @@
 		A447B6651666FD02009EA762 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainWindow.xib; path = CoronaEnterprise/Corona/ios/resource/MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		A447B6691666FD43009EA762 /* CoronaSDK3rdPartyLicenses.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CoronaSDK3rdPartyLicenses.txt; path = CoronaEnterprise/Corona/shared/resource/CoronaSDK3rdPartyLicenses.txt; sourceTree = SOURCE_ROOT; };
 		A447B67116670028009EA762 /* libplayer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libplayer.a; path = CoronaEnterprise/Corona/ios/lib/libplayer.a; sourceTree = SOURCE_ROOT; };
-		A447B824166856F3009EA762 /* main.lua */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.lua; path = ../Corona/main.lua; sourceTree = SOURCE_ROOT; };
 		A484111915114F700074BD57 /* App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A484111D15114F700074BD57 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A484111F15114F700074BD57 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -164,6 +227,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3070C53C16F3C537002B4870 /* Corona */ = {
+			isa = PBXGroup;
+			children = (
+				3070C53D16F3C537002B4870 /* assets */,
+				3070C54D16F3C537002B4870 /* build.settings */,
+				3070C54E16F3C537002B4870 /* config.lua */,
+				3070C54F16F3C537002B4870 /* facebook.png */,
+				3070C55016F3C537002B4870 /* facebook_bkg.png */,
+				3070C55116F3C537002B4870 /* fb.lua */,
+				3070C55216F3C537002B4870 /* fbButton184.png */,
+				3070C55316F3C537002B4870 /* fbButtonOver184.png */,
+				3070C55416F3C537002B4870 /* Icon-72.png */,
+				3070C55516F3C537002B4870 /* Icon-72@2x.png */,
+				3070C55616F3C537002B4870 /* Icon-hdpi.png */,
+				3070C55716F3C537002B4870 /* Icon-ldpi.png */,
+				3070C55816F3C537002B4870 /* Icon-mdpi.png */,
+				3070C55916F3C537002B4870 /* Icon-xhdpi.png */,
+				3070C55A16F3C537002B4870 /* Icon.png */,
+				3070C55B16F3C537002B4870 /* Icon@2x.png */,
+				3070C55C16F3C537002B4870 /* loginScreen.lua */,
+				3070C55D16F3C537002B4870 /* logoutScreen.lua */,
+				3070C55E16F3C537002B4870 /* main.lua */,
+				3070C55F16F3C537002B4870 /* mainScreen.lua */,
+			);
+			name = Corona;
+			path = ../Corona;
+			sourceTree = "<group>";
+		};
+		3070C53D16F3C537002B4870 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				3070C53E16F3C537002B4870 /* action-eating.png */,
+				3070C53F16F3C537002B4870 /* action-location.png */,
+				3070C54016F3C537002B4870 /* action-people.png */,
+				3070C54116F3C537002B4870 /* actionSheetBorder.png */,
+				3070C54216F3C537002B4870 /* actionSheetMask.png */,
+				3070C54316F3C537002B4870 /* back.png */,
+				3070C54416F3C537002B4870 /* back@2x.png */,
+				3070C54516F3C537002B4870 /* backOver.png */,
+				3070C54616F3C537002B4870 /* backOver@2x.png */,
+				3070C54716F3C537002B4870 /* default.png */,
+				3070C54816F3C537002B4870 /* default@2x.png */,
+				3070C54916F3C537002B4870 /* facebook.png */,
+				3070C54A16F3C537002B4870 /* over.png */,
+				3070C54B16F3C537002B4870 /* over@2x.png */,
+				3070C54C16F3C537002B4870 /* scrumptious_logo_large.png */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
 		A447B66F16670015009EA762 /* CoronaEnterprise */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,24 +294,13 @@
 			name = lib;
 			sourceTree = "<group>";
 		};
-		A447B823166856C7009EA762 /* Corona */ = {
-			isa = PBXGroup;
-			children = (
-				30B77C9B16E7843B0078FBEB /* fb.lua */,
-				30B77C9D16E784400078FBEB /* scrumptious.lua */,
-				A447B824166856F3009EA762 /* main.lua */,
-			);
-			name = Corona;
-			path = CoronaSampleApp;
-			sourceTree = "<group>";
-		};
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
 				303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */,
 				A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */,
 				A484112715114F700074BD57 /* App */,
-				A447B823166856C7009EA762 /* Corona */,
+				3070C53C16F3C537002B4870 /* Corona */,
 				A447B66F16670015009EA762 /* CoronaEnterprise */,
 				A4A8C3461683FB1900277A88 /* Facebook */,
 				A484111C15114F700074BD57 /* Frameworks */,
@@ -371,9 +473,41 @@
 				A447B66A1666FD43009EA762 /* CoronaSDK3rdPartyLicenses.txt in Resources */,
 				A4C2446A1683F5F200C395D1 /* FacebookSDKResources.bundle in Resources */,
 				303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */,
-				30B77C9C16E7843B0078FBEB /* fb.lua in Resources */,
-				30B77C9E16E784400078FBEB /* scrumptious.lua in Resources */,
 				30BCB01A16ECC6CC007C9A23 /* CoronaResources.bundle in Resources */,
+				3070C56016F3C537002B4870 /* action-eating.png in Resources */,
+				3070C56116F3C537002B4870 /* action-location.png in Resources */,
+				3070C56216F3C537002B4870 /* action-people.png in Resources */,
+				3070C56316F3C537002B4870 /* actionSheetBorder.png in Resources */,
+				3070C56416F3C537002B4870 /* actionSheetMask.png in Resources */,
+				3070C56516F3C537002B4870 /* back.png in Resources */,
+				3070C56616F3C537002B4870 /* back@2x.png in Resources */,
+				3070C56716F3C537002B4870 /* backOver.png in Resources */,
+				3070C56816F3C537002B4870 /* backOver@2x.png in Resources */,
+				3070C56916F3C537002B4870 /* default.png in Resources */,
+				3070C56A16F3C537002B4870 /* default@2x.png in Resources */,
+				3070C56B16F3C537002B4870 /* facebook.png in Resources */,
+				3070C56C16F3C537002B4870 /* over.png in Resources */,
+				3070C56D16F3C537002B4870 /* over@2x.png in Resources */,
+				3070C56E16F3C537002B4870 /* scrumptious_logo_large.png in Resources */,
+				3070C56F16F3C537002B4870 /* build.settings in Resources */,
+				3070C57016F3C537002B4870 /* config.lua in Resources */,
+				3070C57116F3C537002B4870 /* facebook.png in Resources */,
+				3070C57216F3C537002B4870 /* facebook_bkg.png in Resources */,
+				3070C57316F3C537002B4870 /* fb.lua in Resources */,
+				3070C57416F3C537002B4870 /* fbButton184.png in Resources */,
+				3070C57516F3C537002B4870 /* fbButtonOver184.png in Resources */,
+				3070C57616F3C537002B4870 /* Icon-72.png in Resources */,
+				3070C57716F3C537002B4870 /* Icon-72@2x.png in Resources */,
+				3070C57816F3C537002B4870 /* Icon-hdpi.png in Resources */,
+				3070C57916F3C537002B4870 /* Icon-ldpi.png in Resources */,
+				3070C57A16F3C537002B4870 /* Icon-mdpi.png in Resources */,
+				3070C57B16F3C537002B4870 /* Icon-xhdpi.png in Resources */,
+				3070C57C16F3C537002B4870 /* Icon.png in Resources */,
+				3070C57D16F3C537002B4870 /* Icon@2x.png in Resources */,
+				3070C57E16F3C537002B4870 /* loginScreen.lua in Resources */,
+				3070C57F16F3C537002B4870 /* logoutScreen.lua in Resources */,
+				3070C58016F3C537002B4870 /* main.lua in Resources */,
+				3070C58116F3C537002B4870 /* mainScreen.lua in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
