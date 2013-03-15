@@ -41,9 +41,41 @@
 --
 ---------------------------------------------------------------------------------------
 
--- DANNY > Go straight to the scrumptious sample
-require( "scrumptious" ).new()
+local storyboard = require( "storyboard" )
 
---[[
+local TEST_SCRUMPTIOUS = true
+local TEST_FBCONNECT = false
 
---]]
+if TEST_SCRUMPTIOUS then
+	storyboard.userData = {}
+
+	storyboard.navBarGroup = display.newGroup()
+
+	local navBarGradient = graphics.newGradient(
+				{ 189, 203, 220, 255 }, 
+				{ 89, 116, 152, 255 }, "down" )
+
+	-- Create the navigation bar
+	storyboard.navBar = display.newRect( 0, 0, display.contentWidth, 46 )
+	storyboard.navBar.x = display.contentCenterX
+	storyboard.navBar.y = display.statusBarHeight + storyboard.navBar.contentHeight * 0.5
+	storyboard.navBar:setFillColor( navBarGradient )
+	storyboard.navBarGroup:insert( storyboard.navBar )
+
+	-- Create the navigation bar text
+	storyboard.navBarText = display.newEmbossedText( "Scrumptious", 0, 0, native.systemFontBold, 24 )
+	storyboard.navBarText.x = display.contentCenterX
+	storyboard.navBarText.y = storyboard.navBar.y
+	storyboard.navBarText:setTextColor( 255 )
+	storyboard.navBarGroup:insert( storyboard.navBarText )
+
+	-- Set the navBar group as invisible initially
+	storyboard.navBarGroup.isVisible = false
+
+	-- Goto the login screen
+	storyboard.gotoScene( "loginScreen" )
+end
+
+if TEST_FBCONNECT then
+	storyboard.gotoScene( "fb" )
+end

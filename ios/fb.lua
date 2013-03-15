@@ -1,7 +1,8 @@
 
-local M = {}
+local storyboard = require( "storyboard" )
+local scene = storyboard.newScene()
 
-function M.new()
+function scene:createScene( event )
 	-- Comment out the next line when through debugging your app.
 	io.output():setvbuf('no') 		-- **debug: disable output buffering for Xcode Console **tjn
 
@@ -335,8 +336,8 @@ function M.new()
 			label = "Logout",
 			labelColor = { default = { 255, 255, 255 } }
 		}
-		fbButton6.x = 160
-		fbButton6.y = ButtonOrigY + ButtonYOffset * 4
+		fbButton5.x = 160
+		fbButton5.y = ButtonOrigY + ButtonYOffset * 4
 	else
 		-- Handle the response from showAlert dialog boxbox
 		--
@@ -351,4 +352,6 @@ function M.new()
 	end
 end
 
-return M
+scene:addEventListener( "createScene" )
+
+return scene
