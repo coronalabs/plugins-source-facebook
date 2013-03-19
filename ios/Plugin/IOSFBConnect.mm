@@ -13,6 +13,7 @@
 #include "FBConnectEvent.h"
 #include "CoronaAssert.h"
 #include "CoronaLua.h"
+#include "CoronaVersion.h"
 
 #import "CoronaLuaIOS.h"
 #import "CoronaRuntime.h"
@@ -89,6 +90,85 @@ static const char kFBConnectEventName[] = "fbconnect";
 }
 
 @end
+
+// ----------------------------------------------------------------------------
+
+#ifdef DEBUG_FACEBOOK_ENDPOINT
+
+@interface IOSFBConnectConnectionDelegate : NSObject
+{
+	NSMutableData *fData;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data;
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection;
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response;
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError*)error;
+
+@end
+
+@implementation IOSFBConnectConnectionDelegate
+
+- (id)init
+{
+	self = [super init];
+
+	if ( self )
+	{
+		fData = [[NSMutableData alloc] init];
+	}
+
+	return self;
+}
+
+- (void)dealloc
+{
+	[fData release];
+	[super dealloc];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	// This method is called incrementally as the server sends data; we must concatenate the data to assemble the response
+
+	[fData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	NSMutableData *data = fData;
+	NSString *filePath = NSTemporaryDirectory();
+
+	// In the original test response, FB's server replied with a 1 pixel image (gif?)
+	filePath = [filePath stringByAppendingPathComponent:@"a.gif"];
+
+	if ( filePath )
+	{
+		[data writeToFile:filePath atomically:YES];
+		NSLog( @"Outputing response to: %@.", filePath );
+	}
+}
+
+- (void)connection:(NSURLConnection *)connection dispatchError:(NSString *)s
+{
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response 
+{
+	// It can be called multiple times, for example in the case of a
+	// redirect, so each time we reset the data.
+	[fData setLength:0];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error 
+{
+	NSString *s = [error localizedDescription];
+	[self connection:connection dispatchError:s];
+}
+
+@end
+
+#endif // DEBUG_FACEBOOK_ENDPOINT
 
 // ----------------------------------------------------------------------------
 
@@ -194,12 +274,18 @@ IOSFBConnect::IOSFBConnect( id< CoronaRuntime > runtime )
 	fRuntime( runtime ),
 	fSession( nil ),
 	fFacebook( nil ),
-	fFacebookDelegate( [[IOSFBConnectDelegate alloc] initWithOwner:this] )
+	fFacebookDelegate( [[IOSFBConnectDelegate alloc] initWithOwner:this] ),
+#ifdef DEBUG_FACEBOOK_ENDPOINT
+	fConnectionDelegate( [[IOSFBConnectConnectionDelegate alloc] init] )
+#else
+	fConnectionDelegate( nil )
+#endif
 {
 }
 
 IOSFBConnect::~IOSFBConnect()
 {
+	[fConnectionDelegate release];
 	[fFacebookDelegate release];
 	[fFacebook release];
 }
@@ -210,6 +296,47 @@ IOSFBConnect::Initialize( NSString *appId )
 	if ( nil == fSession )
 	{
 		fSession = FBSession.activeSession;
+	}
+
+	if ( fSession.appID )
+	{
+		// Facebook wants us to add a POST so they can track which FB-enabled
+		// apps use Corona:
+		//	
+		//	HTTP POST to:
+		//	https://www.facebook.com/impression.php
+		//	Parameters:
+		//	plugin = "featured_resources"
+		//	payload = <JSON_ENCODED_DATA>
+		//
+		//	JSON_ENCODED_DATA
+		//	resource "coronalabs_coronasdk"
+		//	appid (Facebook app ID)
+		//	version (This is whatever versioning string you attribute to your resource.)
+		//
+		CORONA_ASSERT( nil == appId || [appId isEqualToString:fSession.appID] );
+
+		NSString *format = @"{\"version\":\"%@\",\"resource\":\"coronalabs_coronasdk\",\"appId\":\"%@\"}";
+		NSString *version = [NSString stringWithUTF8String:CoronaVersionBuildString()];
+		NSString *json = [NSString stringWithFormat:format, version, fSession.appID];
+		NSString *post = [NSString stringWithFormat:@"plugin=featured_resources&payload=%@", json];
+		NSString *postEscaped = [post stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+		NSData *postData = [postEscaped dataUsingEncoding:NSUTF8StringEncoding];
+
+		NSString *postLength = [NSString stringWithFormat:@"%ld", [postData length]];
+
+		NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+		NSURL *url = [NSURL URLWithString:@"https://www.facebook.com/impression.php"];
+		[request setURL:url];
+		[request setHTTPMethod:@"POST"];
+		[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+		[request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+		[request setTimeoutInterval:30];
+		[request setHTTPBody:postData];
+
+		NSURLConnection *connection = [[NSURLConnection alloc] initWithRequest:request delegate:fConnectionDelegate];
+		[connection start];
+		[connection autorelease];
 	}
 
 	return ( nil != fSession );

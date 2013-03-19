@@ -74,6 +74,7 @@ class IOSFBConnect : public FBConnect
 		mutable FBSession *fSession;
 		mutable Facebook *fFacebook; // Need this to support Dialogs
 		IOSFBConnectDelegate *fFacebookDelegate;
+		id fConnectionDelegate;
 };
 
 // ----------------------------------------------------------------------------
