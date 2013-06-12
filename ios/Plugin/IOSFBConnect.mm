@@ -316,7 +316,7 @@ IOSFBConnect::Initialize( NSString *appId )
 		//
 		CORONA_ASSERT( nil == appId || [appId isEqualToString:fSession.appID] );
 
-		NSString *format = @"{\"version\":\"%@\",\"resource\":\"coronalabs_coronasdk\",\"appId\":\"%@\"}";
+		NSString *format = @"{\"version\":\"%@\",\"resource\":\"coronalabs_coronasdk\",\"appid\":\"%@\"}";
 		NSString *version = [NSString stringWithUTF8String:CoronaVersionBuildString()];
 		NSString *json = [NSString stringWithFormat:format, version, fSession.appID];
 		NSString *post = [NSString stringWithFormat:@"plugin=featured_resources&payload=%@", json];
