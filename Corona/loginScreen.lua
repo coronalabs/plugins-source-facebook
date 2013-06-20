@@ -44,6 +44,7 @@ function scene:createScene( event )
 	local appId = "235285269832478"
 	local fbCommand = nil
 	local GET_USER_INFO = "getInfo"
+	local spinner, loginButton
 	
 	local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
 	background.x = display.contentCenterX
@@ -85,6 +86,9 @@ function scene:createScene( event )
 					print( "Profile picture downloaded successfully" )
 				end
 				
+				loginButton.isVisible = false
+				spinner.isVisible = false
+				
 				-- Go to the main screen
 				storyboard.gotoScene( "mainScreen", "crossFade" )
 				
@@ -99,6 +103,9 @@ function scene:createScene( event )
 			if not picDownloaded then
 				network.download( "http://graph.facebook.com/" .. storyboard.userData.id .. "/picture", "GET", networkListener, storyboard.userData.firstName .. storyboard.userData.lastName .. storyboard.userData.id .. ".png", system.TemporaryDirectory )
 			else
+				loginButton.isVisible = true
+				spinner.isVisible = false
+				
 				-- Go to the main screen
 				storyboard.gotoScene( "mainScreen", "crossFade" )
 				
@@ -124,18 +131,28 @@ function scene:createScene( event )
 	
 		return true
 	end
-	
-	
+
+
+	-- Create a spinner
+	spinner = widget.newSpinner
+	{
+	}
+	spinner.isVisible = false
+	group:insert( spinner )
+
 	-- Login function
 	local function loginUser( event )
+		event.target.isVisible = false
+		spinner.isVisible = true
+		spinner:start()
 		-- call the login method of the FB session object, passing in a handler
 		-- to be called upon successful login.
 		fbCommand = GET_USER_INFO
-		facebook.login( appId, facebookListener, { "publish_stream" } )
+		facebook.login( appId, facebookListener )
 	end
 	
 	-- Create a button to login the user
-	local loginButton = widget.newButton
+	loginButton = widget.newButton
 	{
 		width = 120,
 		height = 59,
@@ -145,6 +162,9 @@ function scene:createScene( event )
 	loginButton.x = display.contentCenterX
 	loginButton.y = display.contentCenterY + 80
 	group:insert( loginButton )
+
+	spinner.x = loginButton.x
+	spinner.y = loginButton.y
 end
 
 scene:addEventListener( "createScene", event )
