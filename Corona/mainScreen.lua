@@ -133,6 +133,7 @@ function scene:createScene( event )
 	-- Function to execute on completion of friend choice
 	local function onCompleteFriends( event )
 		print( "event.name:", event.name )
+		print( "event.type:", event.type )
 		
 		local friendsSelected = {}
 	
@@ -193,6 +194,7 @@ function scene:createScene( event )
 
 	local function onCompletePlaces( event )
 		print( "event.name:", event.name )
+		print( "event.type:", event.type )
 
 		if event.data then
 			print( "{" )

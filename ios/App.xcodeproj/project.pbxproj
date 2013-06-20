@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		303299E917737ED200DC0D82 /* CoronaResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 303299E817737ED200DC0D82 /* CoronaResources.bundle */; };
 		303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */; };
 		3070C56016F3C537002B4870 /* action-eating.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C53E16F3C537002B4870 /* action-eating.png */; };
 		3070C56116F3C537002B4870 /* action-location.png in Resources */ = {isa = PBXBuildFile; fileRef = 3070C53F16F3C537002B4870 /* action-location.png */; };
@@ -42,7 +43,6 @@
 		3070C57F16F3C537002B4870 /* logoutScreen.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55D16F3C537002B4870 /* logoutScreen.lua */; };
 		3070C58016F3C537002B4870 /* main.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55E16F3C537002B4870 /* main.lua */; };
 		3070C58116F3C537002B4870 /* mainScreen.lua in Resources */ = {isa = PBXBuildFile; fileRef = 3070C55F16F3C537002B4870 /* mainScreen.lua */; };
-		30BCB01A16ECC6CC007C9A23 /* CoronaResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */; };
 		A447B610165D72FB009EA762 /* AppCoronaDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */; };
 		A447B6671666FD02009EA762 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6641666FD02009EA762 /* MainWindow-iPad.xib */; };
 		A447B6681666FD02009EA762 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = A447B6651666FD02009EA762 /* MainWindow.xib */; };
@@ -102,6 +102,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		303299E817737ED200DC0D82 /* CoronaResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = CoronaResources.bundle; path = ../../../../../../../../Applications/CoronaEnterprise/Corona/ios/resource/CoronaResources.bundle; sourceTree = "<group>"; };
 		303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		3070C53E16F3C537002B4870 /* action-eating.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-eating.png"; sourceTree = "<group>"; };
 		3070C53F16F3C537002B4870 /* action-location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "action-location.png"; sourceTree = "<group>"; };
@@ -137,7 +138,6 @@
 		3070C55D16F3C537002B4870 /* logoutScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = logoutScreen.lua; sourceTree = "<group>"; };
 		3070C55E16F3C537002B4870 /* main.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
 		3070C55F16F3C537002B4870 /* mainScreen.lua */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mainScreen.lua; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.lua; };
-		30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CoronaResources.bundle; sourceTree = SOURCE_ROOT; };
 		A447B60E165D72FB009EA762 /* AppCoronaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppCoronaDelegate.h; sourceTree = SOURCE_ROOT; };
 		A447B60F165D72FB009EA762 /* AppCoronaDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppCoronaDelegate.mm; sourceTree = SOURCE_ROOT; };
 		A447B6641666FD02009EA762 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = "MainWindow-iPad.xib"; path = "CoronaEnterprise/Corona/ios/resource/MainWindow-iPad.xib"; sourceTree = SOURCE_ROOT; };
@@ -297,6 +297,7 @@
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
+				303299E817737ED200DC0D82 /* CoronaResources.bundle */,
 				303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */,
 				A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */,
 				A484112715114F700074BD57 /* App */,
@@ -356,7 +357,6 @@
 		A484112715114F700074BD57 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				30BCB01916ECC6CC007C9A23 /* CoronaResources.bundle */,
 				A484112915114F700074BD57 /* App-Info.plist */,
 				A484112A15114F700074BD57 /* InfoPlist.strings */,
 				A484112D15114F700074BD57 /* main.mm */,
@@ -473,7 +473,6 @@
 				A447B66A1666FD43009EA762 /* CoronaSDK3rdPartyLicenses.txt in Resources */,
 				A4C2446A1683F5F200C395D1 /* FacebookSDKResources.bundle in Resources */,
 				303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */,
-				30BCB01A16ECC6CC007C9A23 /* CoronaResources.bundle in Resources */,
 				3070C56016F3C537002B4870 /* action-eating.png in Resources */,
 				3070C56116F3C537002B4870 /* action-location.png in Resources */,
 				3070C56216F3C537002B4870 /* action-people.png in Resources */,
@@ -493,6 +492,7 @@
 				3070C57016F3C537002B4870 /* config.lua in Resources */,
 				3070C57116F3C537002B4870 /* facebook.png in Resources */,
 				3070C57216F3C537002B4870 /* facebook_bkg.png in Resources */,
+				303299E917737ED200DC0D82 /* CoronaResources.bundle in Resources */,
 				3070C57316F3C537002B4870 /* fb.lua in Resources */,
 				3070C57416F3C537002B4870 /* fbButton184.png in Resources */,
 				3070C57516F3C537002B4870 /* fbButtonOver184.png in Resources */,
