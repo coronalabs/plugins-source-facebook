@@ -27,7 +27,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3029B81B16F3C2CD00C89700 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../../../../../../../Applications/CoronaEnterprise/Plugins/sdk-facebook/ios/FacebookSDK.framework"; sourceTree = "<group>"; };
+		3029B81B16F3C2CD00C89700 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "/Applications/CoronaEnterprise/Plugins/sdk-facebook/ios/FacebookSDK.framework"; sourceTree = "<absolute>"; };
 		3029B81E16F3C2F800C89700 /* Facebook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Facebook.h; sourceTree = "<group>"; };
 		3029B81F16F3C2F800C89700 /* FacebookSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FacebookSDK.h; sourceTree = "<group>"; };
 		3029B82016F3C2F800C89700 /* FBCacheDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBCacheDescriptor.h; sourceTree = "<group>"; };
@@ -118,8 +118,8 @@
 				3029B83C16F3C2F800C89700 /* FBViewController.h */,
 			);
 			name = DeprecatedHeaders;
-			path = "../../../../../../../../Applications/CoronaEnterprise/Plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders";
-			sourceTree = "<group>";
+			path = "/Applications/CoronaEnterprise/Plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders";
+			sourceTree = "<absolute>";
 		};
 		A447B609165D72A6009EA762 /* iOS */ = {
 			isa = PBXGroup;
