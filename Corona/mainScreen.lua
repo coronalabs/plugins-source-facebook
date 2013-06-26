@@ -52,6 +52,7 @@ function scene:createScene( event )
 	local postData =
 	{
 		eating = nil,
+		eatingUrl = nil,
 		place = nil,
 		address = nil,
 		with = {},
@@ -59,15 +60,14 @@ function scene:createScene( event )
 	
 	local mealTypes =
 	{
-		"Pizza",
-		"Chicken",
-		"Steak",
-		"Pasta",
-		"Noodles",
-		"French Fries",
-		"Sausage",
-		"Beef",
-		"Stir Fry",
+		{ name = "Cheeseburger", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/cheeseBurger.html" },
+		{ name = "Pizza", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/pizza.html" },
+		{ name = "Hotdog", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/hotdog.html" },
+		{ name = "Italian", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/italian.html" },
+		{ name = "French", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/french.html" },
+		{ name = "Chinese", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/chinese.html" },
+		{ name = "Thai", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/thai.html" },
+		{ name = "Indian", url = "http://developer.coronalabs.com/sites/default/files/fbscrumptious/indian.html" },
 	}
 	
 	local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
@@ -131,7 +131,12 @@ function scene:createScene( event )
 	
 	
 	-- Function to execute on completion of friend choice
-	local function onCompleteFriends( event )	
+	local function onCompleteFriends( event )
+		print( "event.name:", event.name )
+		print( "event.type:", event.type )
+		
+		local friendsSelected = {}
+	
 		-- If there is event.data print it's key/value pairs
 		if event.data then
 			print( "event.data: {" );
@@ -142,10 +147,12 @@ function scene:createScene( event )
 
 					for k, v in pairs( event.data[i] ) do
 						print( k, ":", v )	
-
+	
 						-- Add friend to post data
-						if "fullName" == k then
+						if "id" == k then
 							postData.with[#postData.with + 1] = v
+						elseif "fullName" == k then
+							friendsSelected[#friendsSelected + 1] = v
 						end
 					end
 
@@ -160,11 +167,18 @@ function scene:createScene( event )
 			end
 
 			-- Set the with friends string to the first selected friend by default
-			local withString = postData.with[1]
+			local withString = friendsSelected[1]
+
+			-- If there is more than one friend selected, append the id string
+			if #postData.with > 1 then
+				for i = 2, #postData.with do
+					-- postData.with = postData[i-1].with .. "," .. postData[i].with
+				end
+			end
 
 			-- If there is more than one friend selected, append the string
-			if #postData.with > 1 then
-				withString = postData.with[1] .. " and " .. #postData.with - 1 .. " others"
+			if #friendsSelected > 1 then
+				withString = friendsSelected[1] .. " and " .. #friendsSelected - 1 .. " others"
 			end
 			
 			-- Set the description
@@ -179,6 +193,9 @@ function scene:createScene( event )
 
 
 	local function onCompletePlaces( event )
+		print( "event.name:", event.name )
+		print( "event.type:", event.type )
+
 		if event.data then
 			print( "{" )
 
@@ -198,6 +215,8 @@ function scene:createScene( event )
 				-- Add place address to post data
 				if "street" == k then
 					postData.address = v
+				elseif "id" == k then
+					postData.id = v
 				elseif "state" == k or "city" == k then
 					if string.len( v ) > 0 then
 						postData.address = postData.address .. ", " .. v
@@ -221,9 +240,16 @@ function scene:createScene( event )
 	
 	
 	local function facebookListener( event )
-		if "request" == event.type then
+		if "request" == event.type then		
 			native.showAlert( "Result", "Message succesfully posted!", { "Ok" } )
-	
+			
+			-- Reset the item descriptions
+			items[1].description = "Select one"
+			items[2].description = "Select one"
+			items[3].description = "Select friends"
+			-- Recreate the list
+			createList()
+			
 		-- After a successful login event, send the FB command
 		-- Note: If the app is already logged in, we will still get a "login" phase
 	    elseif "session" == event.type then
@@ -236,44 +262,67 @@ function scene:createScene( event )
 			
 			-- This code posts a message to your Facebook Wall
 			if fbCommand == POST_MSG then
+				local includePlace = false
+				local includeWith = false
+				
 				-- Handle errors
-				if type( postData.place ) ~= "string" then
-					native.showAlert( "Missing selection", "You need to select the place were you are currently eating", { "OK" } )
-					return
+				if type( postData.place ) == "string" and string.len( postData.place ) > 0 then
+					includePlace = true
 				end
 				
+				if #postData.with > 0 then
+					includeWith = true
+				end
+								
 				if type( postData.eating ) ~= "string" then
 					native.showAlert( "Missing selection", "You need to select what food you are eating", { "OK" } )
 					return
-				end 
-				
-				if 0 == #postData.with then
-					native.showAlert( "Missing selection", "You need to select who you are eating with", { "OK" } )
-					return
-				end
+				end 				
 
 				-- If all is ok, post the message to the users wall
 				local friends = ""
 				
 				-- Set the with friends string accordingly
-				for i = 1, #postData.with do
-					if i <= 1 then
-						friends = postData.with[i]
-					elseif i >= #postData.with then
-						friends = friends .. " & " .. postData.with[i]
-					else
-						friends = friends .. ", " .. postData.with[i]
+				if #postData.with > 0 then
+					for i = 1, #postData.with do
+						if i <= 1 then
+							friends = postData.with[i]
+						elseif i >= #postData.with then
+							friends = friends .. "," .. postData.with[i]
+						else
+							friends = friends .. "," .. postData.with[i]
+						end
 					end
 				end
 				
+				-- Message to post to the users wall
+				local messageToPost = storyboard.userData.firstName .. " " .. storyboard.userData.lastName
+				local placeToPost = ""
+				local selectedMeal = postData.eatingUrl
+								
+				if includePlace then
+					placeToPost = postData.id
+				end
+								
 				-- Set the message
-				local postMsg = 
-				{
-					message = storyboard.userData.firstName .. " " .. storyboard.userData.lastName ..  " ate a " .. postData.eating .. " on Scrumptious. -- With " .. friends .. " at " .. postData.place .. " - " .. postData.address,
-				}
+				local postMsg = {}
+				
+				-- Set up the post message
+				if "string" == type( selectedMeal ) and string.len( selectedMeal ) > 1 then
+					postMsg.meal = selectedMeal
+				end
+				
+				-- Set the friends we selected to be tagged in our timeline post
+				if "string" == type( friends ) and string.len( friends ) > 1 then
+					postMsg.tags = friends
+				end
+				
+				if "string" == type( placeToPost ) and string.len( placeToPost ) > 1 then
+					postMsg.place = placeToPost
+				end
 		
 				-- Post the message
-				facebook.request( "me/feed", "POST", postMsg )
+				facebook.request( "me/corona_scrumptious:eat", "POST", postMsg )
 			end
 			
 			return true
@@ -387,7 +436,7 @@ function scene:createScene( event )
 	-- Announce!
 	local function postMessage( event )
 		fbCommand = POST_MSG
-		facebook.login( appId, facebookListener, { "publish_stream" } )
+		facebook.login( appId, facebookListener, { "publish_actions" } )
 	end
 
 	-- Announce button
@@ -419,7 +468,7 @@ function scene:createScene( event )
 		local function onRowRender( event )
 			local row = event.row
 
-			local rowTitle = display.newText( rows[row.index], 0, 0, native.systemFontBold, 24 )
+			local rowTitle = display.newText( rows[row.index].name, 0, 0, native.systemFontBold, 24 )
 			rowTitle.x = row.contentWidth * 0.5
 			rowTitle.y = row.contentHeight * 0.5
 			rowTitle:setTextColor( 0 )
@@ -431,8 +480,9 @@ function scene:createScene( event )
 			local row = event.target
 
 			if "release" == phase then
-				postData.eating = row.id
-
+				postData.eating = rows[row.index].name
+				postData.eatingUrl = rows[row.index].url
+				
 				actionSheet:hide()
 			end
 
@@ -479,8 +529,8 @@ function scene:createScene( event )
 
 		local function hideActionSheet( event )
 			transition.to( group, { y = display.contentHeight + group.contentHeight * 0.5, transition = easing.inOutExpo } )
-			transition.to( navBarText, { alpha = 1 } )
-			transition.to( settingsButton, { alpha = 1 } )
+			transition.to( storyboard.navBarText, { alpha = 1 } )
+			transition.to( storyboard.settingsButton, { alpha = 1 } )
 		end
 
 		local cancelButton = widget.newButton

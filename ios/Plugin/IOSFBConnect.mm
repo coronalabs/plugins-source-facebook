@@ -829,7 +829,7 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 														
 															// event table
 															lua_newtable( L );
-															
+																														
 															// event.data table
 															lua_newtable( L );
 															
@@ -903,6 +903,14 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 		
 															// Set event.data
 															lua_setfield( L, -2, "data" );
+															
+															// Set event.name property
+															lua_pushstring( L, "fbDialog" ); // Value ( name )
+															lua_setfield( L, -2, "name" ); // Key
+															
+															// Set event.type property
+															lua_pushstring( L, "place" ); // Value ( name )
+															lua_setfield( L, -2, "type" ); // Key
 														
 															// Call the onComplete function
 															Corona::Lua::DoCall( L, 1, 1 );
@@ -1046,6 +1054,14 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 																																
 																// Set event.data
 																lua_setfield( L, -2, "data" );
+																
+																// Set event.name property
+																lua_pushstring( L, "fbDialog" ); // Value ( name )
+																lua_setfield( L, -2, "name" ); // Key
+																
+																// Set event.type property
+																lua_pushstring( L, "friends" ); // Value ( name )
+																lua_setfield( L, -2, "type" ); // Key
 
 																// Call the onComplete function
 																Corona::Lua::DoCall( L, 1, 1 );

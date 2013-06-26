@@ -107,6 +107,9 @@ function scene:createScene( event )
 		-- Log the user out
 		facebook.logout()
 		
+		-- Hide the scrumptious button
+		transition.to( storyboard.scrumptiousButton, { alpha = 0 } )
+		
 		-- Hide the navigation bar
 		storyboard.navBarGroup.isVisible = false
 		
