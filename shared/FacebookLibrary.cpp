@@ -54,6 +54,7 @@ class FacebookLibrary
 		static int request( lua_State *L );
 		static int showDialog( lua_State *L );
 		static int show( lua_State *L );
+        static int publishInstall( lua_State *L );
 
 	private:
 		FBConnect *fFBConnect;
@@ -105,6 +106,7 @@ FacebookLibrary::Open( lua_State *L )
 		{ "logout", logout },
 		{ "request", request },
 		{ "showDialog", showDialog },
+        { "publishInstall", publishInstall },
 
 		{ NULL, NULL }
 	};
@@ -262,6 +264,29 @@ FacebookLibrary::showDialog( lua_State *L )
 	return 0;
 }
 
+int
+FacebookLibrary::publishInstall( lua_State *L )
+{
+    if ( LUA_TSTRING == lua_type( L, 1 ) )
+	{
+		const char *appId = lua_tostring( L, 1 );
+        
+		if ( appId )
+		{
+			Self *library = ToLibrary( L );
+			FBConnect *connect = library->GetFBConnect();
+			
+			connect->PublishInstall( appId );
+		}
+	}
+	else
+	{
+		CORONA_LOG_ERROR( "First argument to facebook.publishInstall() should be a string." );
+	}
+    
+    return 0;
+}
+    
 // ----------------------------------------------------------------------------
 
 } // namespace Corona

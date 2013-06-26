@@ -68,6 +68,7 @@ class IOSFBConnect : public FBConnect
 		virtual void Logout() const;
 		virtual void Request( lua_State *L, const char *path, const char *httpMethod, int x ) const;
 		virtual void ShowDialog( lua_State *L, int index ) const;
+        virtual void PublishInstall( const char *appId ) const;
 
 	private:
 		id< CoronaRuntime > fRuntime;

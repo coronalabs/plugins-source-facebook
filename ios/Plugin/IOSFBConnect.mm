@@ -603,6 +603,13 @@ IOSFBConnect::Request( lua_State *L, const char *path, const char *httpMethod, i
 		FBRequestConnection *connection = [FBRequestConnection startWithGraphPath:pathString parameters:params HTTPMethod:httpMethodString completionHandler:handler];
 	}
 }
+    
+void
+IOSFBConnect::PublishInstall(const char *appId) const
+{
+    NSString *applicationId = [NSString stringWithUTF8String:appId];
+    [FBSettings publishInstall:applicationId];
+}
 
 void
 IOSFBConnect::ShowDialog( lua_State *L, int index ) const
