@@ -506,50 +506,110 @@ IOSFBConnect::Close() const
 void
 IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermissions ) const
 {
-	NSMutableArray *permissionsValue = nil;
+	// The read and publish permissions should be requested seperately
+	NSMutableArray *readPermissions = nil;
+	NSMutableArray *publishPermissions = nil;
 	if ( numPermissions )
 	{
-		permissionsValue = [NSMutableArray arrayWithCapacity:numPermissions];
+		readPermissions = [NSMutableArray arrayWithCapacity:numPermissions];
+		publishPermissions = [NSMutableArray arrayWithCapacity:numPermissions];
 		for ( int i = 0; i < numPermissions; i++ )
 		{
 			NSString *str = [[NSString alloc] initWithUTF8String:permissions[i]];
-			[permissionsValue addObject:str];
+			
+			// This ,ight need to change if the sdk is upgraded
+			if ( [FBSession isPublishPermission:str] )
+			{
+				[publishPermissions addObject:str];
+			}
+			else
+			{
+				[readPermissions addObject:str];
+			}
+			
 			[str release];
 		}
 	}
-
+	
 	if ( ! fSession )
 	{
-		// Callback wrapper
-		FBSessionStateHandler handler = ^( FBSession *session, FBSessionState state, NSError *error )
+		FBSessionReauthorizeResultHandler publishHandler = ^( FBSession *publishSession, NSError *publishError )
 		{
-			SessionChanged( session, state, error );
+			SessionChanged(publishSession, [FBSession.activeSession state], publishError);
 		};
-
-		[FBSession openActiveSessionWithPermissions:permissionsValue
-			allowLoginUI:YES
-			completionHandler:handler];
+		
+		// Callback wrapper
+		FBSessionReauthorizeResultHandler handler = ^( FBSession *session, NSError *error )
+		{
+			if ( publishPermissions && publishPermissions.count > 0 && !error && session )
+			{
+				// You can't have 2 reauthorizations going on at the same time.
+				[session reauthorizeWithPublishPermissions:publishPermissions
+										   defaultAudience:FBSessionDefaultAudienceEveryone
+										 completionHandler:publishHandler];
+			}
+			else
+			{
+				SessionChanged(session, [FBSession.activeSession state], error);
+			}
+		};
+		
+		// This will be called when the session is opened
+		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+		[notificationCenter addObserverForName:FBSessionDidBecomeOpenActiveSessionNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+			if ( readPermissions && readPermissions.count > 0 )
+			{
+				// If there are still publishing permissions, those will be reauthorized in the handler.  You can't have 2 reauthorizations going on at the same time.
+				[FBSession.activeSession reauthorizeWithReadPermissions:readPermissions completionHandler:handler];
+			}
+			else if ( publishPermissions && publishPermissions.count > 0 )
+			{
+				// After this is done, it will call back to the lua side with a session changed event
+				[FBSession.activeSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:publishHandler];
+			}
+			else
+			{
+				SessionChanged(FBSession.activeSession, [FBSession.activeSession state], nil);
+			}
+		}];
+		
+		[FBSession openActiveSessionWithAllowLoginUI:YES];
 	}
 	else
 	{
 		if ( numPermissions > 0 )
 		{
+			FBSessionReauthorizeResultHandler publishHandler = ^( FBSession *publishSession, NSError *publishError )
+			{
+				ReauthorizationCompleted(publishSession, publishError);
+			};
+			
+			// Callback wrapper
 			FBSessionReauthorizeResultHandler handler = ^( FBSession *session, NSError *error )
 			{
-				ReauthorizationCompleted( session, error );
+				if ( publishPermissions && publishPermissions.count > 0 && !error && session )
+				{
+					// You can't have 2 authorization requests going on at the same time.
+					[session reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:publishHandler];
+				}
+				else
+				{
+					ReauthorizationCompleted(session, error);
+				}
 			};
-
-			// TODO: We need to a new API to deal with permissions correctly,
-			// e.g. separating read from publish. For now, we stick to the old workflow.
-			@try {
-				// [fSession reauthorizeWithReadPermissions:permissionsValue completionHandler:handler];
-				[fSession reauthorizeWithPermissions:permissionsValue behavior:FBSessionLoginBehaviorUseSystemAccountIfPresent completionHandler:handler];
+			
+			if ( readPermissions && readPermissions.count > 0 )
+			{
+				[fSession reauthorizeWithReadPermissions:readPermissions completionHandler:handler];
 			}
-			@catch (NSException *exception) {
-				// NSLog( @"%@", exception );
+			else if ( publishPermissions && publishPermissions.count > 0 )
+			{
+				// If there aren't any read permissions and the number of requested permissions is >0 then they have to be publish permissions
+				[fSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:publishHandler];
 			}
+			
 		}
-
+		
 		// Send a login event
 		SessionChanged( fSession, FBSessionStateOpen, nil );
 	}
