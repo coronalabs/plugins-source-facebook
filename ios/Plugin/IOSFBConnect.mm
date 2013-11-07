@@ -413,6 +413,7 @@ IOSFBConnect::SessionChanged( FBSession *session, int state, NSError *error ) co
 	switch ( (FBSessionState)state )
 	{
 		case FBSessionStateOpen:
+		case FBSessionStateOpenTokenExtended:
 		{
 			const_cast< Self * >( this )->Initialize( session.appID );
 
