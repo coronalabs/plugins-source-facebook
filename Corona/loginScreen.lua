@@ -1,7 +1,7 @@
 -- 
 -- Project: Facebook Connect scrumptious sample app
 --
--- Date: March 14, 2013
+-- Date: August 19, 2013
 --
 -- Version: 1.0
 --
@@ -30,6 +30,7 @@
 -- Sample code is MIT licensed, see http://www.coronalabs.com/links/code/license
 -- Copyright (C) 2010 Corona Labs Inc. All Rights Reserved.
 --
+-- Supports Graphics 2.0
 ---------------------------------------------------------------------------------------
 
 local facebook = require( "facebook" )
@@ -41,15 +42,13 @@ local scene = storyboard.newScene()
 function scene:createScene( event )
 	local group = self.view
 	
-	local appId = "235285269832478"
+	local appId = nil			-- Add the Facebook App ID string here
 	local fbCommand = nil
 	local GET_USER_INFO = "getInfo"
 	local spinner, loginButton
 	
-	local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
-	background.x = display.contentCenterX
-	background.y = display.contentCenterY
-	background:setFillColor( 73, 103, 165 )
+	local background = display.newRect( display.contentCenterX, display.contentCenterY, display.contentWidth, display.contentHeight )
+	background:setFillColor( 73/255, 103/255, 165/255 )
 	group:insert( background ) 
 
 	local scrumptiousLogo = display.newImageRect( "assets/scrumptious_logo_large.png", 100, 100 )
@@ -60,17 +59,36 @@ function scene:createScene( event )
 	local scrumptiousLabel = display.newText( "Scrumptious", 0, 0, native.systemFontBold, 24 )
 	scrumptiousLabel.x = scrumptiousLogo.x + scrumptiousLogo.contentWidth * 0.5 + scrumptiousLabel.contentWidth * 0.5 + 20
 	scrumptiousLabel.y = scrumptiousLogo.y - 20
-	scrumptiousLabel:setTextColor( 138, 215, 255 )
+	scrumptiousLabel:setFillColor( 138/255, 215/255, 1 )
 	group:insert( scrumptiousLabel )
 	
-	local getStartedText = display.newText( "To get started, login\n using Facebook", 0, 0, display.contentWidth, 0, native.systemFont, 18 )
-	getStartedText.x = 240
-	getStartedText.y = 220
+	local getStartedText = display.newText( "To get started, login\n using Facebook", 240, 220, display.contentWidth, 0, native.systemFont, 18 )
 	group:insert( getStartedText )
+
+	-- Display an Alert box if no app ID is set
+	if not appId then	
+			-- Handle the response from showAlert dialog boxbox
+		--
+		local function onComplete( event )
+			if event.index == 1 then
+				system.openURL( "http://developers.facebook.com/docs/guides/canvas/" )
+			end
+		end
+
+		native.showAlert( "Error", "To develop for Facebook Connect, you need to get an API key and application secret. This is available from Facebook's website.",
+			{ "Learn More", "Cancel" }, onComplete )
+	end
 	
 	-- Facebook listener
 	local function facebookListener( event )
 		if "request" == event.type then		
+
+			if event.isError then
+				native.showAlert( "Request Error", "Error trying to get the current user", { "OK" } )
+				spinner.isVisible = false
+				return
+			end
+
 			local response = json.decode( event.response )
 
 			if response then
@@ -142,13 +160,16 @@ function scene:createScene( event )
 
 	-- Login function
 	local function loginUser( event )
-		event.target.isVisible = false
-		spinner.isVisible = true
-		spinner:start()
-		-- call the login method of the FB session object, passing in a handler
-		-- to be called upon successful login.
-		fbCommand = GET_USER_INFO
-		facebook.login( appId, facebookListener )
+		if appId then	
+			-- only call login if the app ID is defined
+			event.target.isVisible = false
+			spinner.isVisible = true
+			spinner:start()
+			-- call the login method of the FB session object, passing in a handler
+			-- to be called upon successful login.
+			fbCommand = GET_USER_INFO
+			facebook.login( appId, facebookListener )
+		end
 	end
 	
 	-- Create a button to login the user

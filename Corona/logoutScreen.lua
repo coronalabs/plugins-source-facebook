@@ -30,6 +30,7 @@
 -- Sample code is MIT licensed, see http://www.coronalabs.com/links/code/license
 -- Copyright (C) 2010 Corona Labs Inc. All Rights Reserved.
 --
+-- Supports Graphics 2.0
 ---------------------------------------------------------------------------------------
 
 local facebook = require( "facebook" )
@@ -40,10 +41,9 @@ local scene = storyboard.newScene()
 function scene:createScene( event )
 	local group = self.view
 	
-	local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
-	background.x = display.contentCenterX
+	local background = display.newRect( display.contentCenterX, 0, display.contentWidth, display.contentHeight )
 	background.y = display.contentCenterY + display.statusBarHeight
-	background:setFillColor( 73, 103, 165 )
+	background:setFillColor( 73/255, 103/255, 165/255 )
 	group:insert( background )
 	
 	-- Show facebook logo
@@ -62,7 +62,7 @@ function scene:createScene( event )
 	local userName = display.newEmbossedText( storyboard.userData.firstName .. " " .. storyboard.userData.lastName, 0, 0, native.systemFont, 16 )
 	userName.x = userPicture.x
 	userName.y = userPicture.y + userPicture.contentHeight * 0.5 + userName.contentHeight
-	userName:setTextColor( 255 )
+	userName:setFillColor( 1 )
 	group:insert( userName )
 	
 	-- Back to scrumptious main screen
@@ -91,8 +91,8 @@ function scene:createScene( event )
 		label = "Scrumptious",
 		labelColor = 
 		{
-			default = { 255, 255, 255 },
-			over = { 255, 255, 255, 128 },
+			default = { 1, 1, 1 },
+			over = { 1, 1, 1, 0.5 },
 		},
 		labelXOffset = 2.5,
 		fontSize = 12,

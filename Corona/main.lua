@@ -1,9 +1,9 @@
 -- 
--- Project: Facebook Connect sample app
+-- Project: Facebook Connect scrumptious sample app
 --
--- Date: December 24, 2010
+-- Date: March 14, 2013
 --
--- Version: 1.5
+-- Version: 1.0
 --
 -- File name: main.lua
 --
@@ -12,20 +12,11 @@
 -- Abstract: Presents the Facebook Connect login dialog, and then posts to the user's stream
 -- (Also demonstrates the use of external libraries.)
 --
--- Demonstrates: webPopup, network, Facebook library
+-- Demonstrates: Facebook library, widget
 --
 -- File dependencies: facebook.lua
 --
--- Target devices: Simulator and Device
---
--- Limitations: Requires internet access; no error checking if connection fails
---
--- Update History:
---	v1.1		Layout adapted for Android/iPad/iPhone4
---  v1.2		Modified for new Facebook Connect API (from build #243)
---  v1.3		Added buttons to: Post Message, Post Photo, Show Dialog, Logout
---  v1.4		Added  ...{"publish_stream"} .. permissions setting to facebook.login() calls.
---	v1.5		Added single sign-on support in build.settings (must replace XXXXXXXXX with valid facebook appId)
+-- Target devices: Simulator and Device (iOS only)
 
 --
 -- Comments:
@@ -39,26 +30,33 @@
 -- Sample code is MIT licensed, see http://www.coronalabs.com/links/code/license
 -- Copyright (C) 2010 Corona Labs Inc. All Rights Reserved.
 --
+-- Supports Graphics 2.0
 ---------------------------------------------------------------------------------------
 
-local storyboard = require( "storyboard" )
+local isSimulator = "simulator" == system.getInfo( "environment" )
 
-local TEST_SCRUMPTIOUS = true
-local TEST_FBCONNECT = false
+if isSimulator then
+	local warningText = display.newText( "This sample code is not supported in the simulator\n\nPlease build for an Android, iOS device, or Xcode simulator",
+		 170, 150, display.contentWidth, 0, native.systemFontBold, 14 )	
+end
 
-if TEST_SCRUMPTIOUS then
+if not isSimulator then
+	local storyboard = require( "storyboard" )
+
 	storyboard.userData = {}
-
 	storyboard.navBarGroup = display.newGroup()
 
-	local navBarGradient = graphics.newGradient(
-				{ 189, 203, 220, 255 }, 
-				{ 89, 116, 152, 255 }, "down" )
+local navBarGradient = {
+	type = 'gradient',
+	color1 = { 189/255, 203/255, 220/255, 255/255 }, 
+	color2 = { 89/255, 116/255, 152/255, 255/255 },
+	direction = "down"
+}
 
 	-- Create the navigation bar
 	storyboard.navBar = display.newRect( 0, 0, display.contentWidth, 46 )
 	storyboard.navBar.x = display.contentCenterX
-	storyboard.navBar.y = display.statusBarHeight + storyboard.navBar.contentHeight * 0.5
+	storyboard.navBar.y = display.screenOriginY + storyboard.navBar.contentHeight * 0.5
 	storyboard.navBar:setFillColor( navBarGradient )
 	storyboard.navBarGroup:insert( storyboard.navBar )
 
@@ -66,7 +64,7 @@ if TEST_SCRUMPTIOUS then
 	storyboard.navBarText = display.newEmbossedText( "Scrumptious", 0, 0, native.systemFontBold, 24 )
 	storyboard.navBarText.x = display.contentCenterX
 	storyboard.navBarText.y = storyboard.navBar.y
-	storyboard.navBarText:setTextColor( 255 )
+	storyboard.navBarText:setFillColor( 1 )
 	storyboard.navBarGroup:insert( storyboard.navBarText )
 
 	-- Set the navBar group as invisible initially
@@ -74,8 +72,5 @@ if TEST_SCRUMPTIOUS then
 
 	-- Goto the login screen
 	storyboard.gotoScene( "loginScreen" )
-end
 
-if TEST_FBCONNECT then
-	storyboard.gotoScene( "fb" )
 end

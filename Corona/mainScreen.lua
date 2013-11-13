@@ -40,7 +40,7 @@ local scene = storyboard.newScene()
 function scene:createScene( event )
 	local group = self.view
 	
-	local appId = "235285269832478"
+	local appId = nil
 	local fbCommand = nil
 	local GET_USER_INFO = "getInfo"
 	local POST_MSG = "post"
@@ -72,7 +72,7 @@ function scene:createScene( event )
 	
 	local background = display.newRect( 0, 0, display.contentWidth, display.contentHeight )
 	background.x = display.contentCenterX
-	background.y = display.contentCenterY + display.statusBarHeight
+	background.y = display.contentCenterY + display.topStatusBarContentHeight
 	background:setFillColor( 255, 255, 255 )
 	group:insert( background )
 	
@@ -132,9 +132,6 @@ function scene:createScene( event )
 	
 	-- Function to execute on completion of friend choice
 	local function onCompleteFriends( event )
-		print( "event.name:", event.name )
-		print( "event.type:", event.type )
-		
 		local friendsSelected = {}
 	
 		-- If there is event.data print it's key/value pairs
@@ -155,11 +152,7 @@ function scene:createScene( event )
 							friendsSelected[#friendsSelected + 1] = v
 						end
 					end
-
-					print( "picture : {" )
-					for k, v in pairs( event.data[i].picture.data ) do
-						print( k, ":", v )
-					end
+					
 					print( "}," )
 
 					print( "}," )
@@ -193,9 +186,6 @@ function scene:createScene( event )
 
 
 	local function onCompletePlaces( event )
-		print( "event.name:", event.name )
-		print( "event.type:", event.type )
-
 		if event.data then
 			print( "{" )
 
@@ -221,15 +211,6 @@ function scene:createScene( event )
 					if string.len( v ) > 0 then
 						postData.address = postData.address .. ", " .. v
 					end
-				end
-
-				if "picture" == k then
-					print( "picture : {" )
-
-					for k, v in pairs( v.data ) do
-						print( k, ":", v )
-					end
-					print( "}," )
 				end
 			end
 
@@ -460,6 +441,9 @@ function scene:createScene( event )
 		underlay:setFillColor( 0, 0, 0, 128 )
 		underlay:addEventListener( "touch", function() return true end )
 
+		underlay.anchorX = 0
+		underlay.anchorY = 0
+
 		local title = display.newEmbossedText( group, "Select a meal", 0, 0, native.systemFont, 14 )
 		title:setTextColor( 255 )
 		title.x = display.contentCenterX
@@ -469,8 +453,8 @@ function scene:createScene( event )
 			local row = event.row
 
 			local rowTitle = display.newText( rows[row.index].name, 0, 0, native.systemFontBold, 24 )
-			rowTitle.x = row.contentWidth * 0.5
 			rowTitle.y = row.contentHeight * 0.5
+			rowTitle.anchorX = 0
 			rowTitle:setTextColor( 0 )
 			row:insert( rowTitle )
 		end
@@ -493,7 +477,7 @@ function scene:createScene( event )
 		local tableView = widget.newTableView
 		{
 			left = 20,
-			top = display.statusBarHeight + 64,
+			top = display.topStatusBarContentHeight + 64,
 			width = display.contentWidth - 40,
 			height = 300,
 			maskFile = "assets/actionSheetMask.png",
@@ -517,15 +501,21 @@ function scene:createScene( event )
 			{ 252, 252, 252 },
 			{ 141, 141, 141 }, "down" )
 
-		local gradientRect = display.newRect( 20, display.statusBarHeight + 64, display.contentWidth - 40, 310 )
+		local gradientRect = display.newRect( 20, display.topStatusBarContentHeight + 64, display.contentWidth - 40, 310 )
 		gradientRect:setFillColor( tableViewGradient )
 		gradientRect.alpha = 0.25
 		group:insert( gradientRect )
+
+		gradientRect.anchorX = 0
+		gradientRect.anchorY = 0
 
 		local underlayBorder = display.newImageRect( group, "assets/actionSheetBorder.png", 300, 330 )
 		underlayBorder.x = gradientRect.x + 1
 		underlayBorder.y = gradientRect.y
 		underlayBorder:toBack()
+
+		underlayBorder.anchorX = 0
+		underlayBorder.anchorY = 0
 
 		local function hideActionSheet( event )
 			transition.to( group, { y = display.contentHeight + group.contentHeight * 0.5, transition = easing.inOutExpo } )

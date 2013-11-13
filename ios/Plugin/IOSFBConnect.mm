@@ -517,15 +517,18 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 		for ( int i = 0; i < numPermissions; i++ )
 		{
 			NSString *str = [[NSString alloc] initWithUTF8String:permissions[i]];
-			
-			// This ,ight need to change if the sdk is upgraded
-			if ( [FBSession isPublishPermission:str] )
+			// Don't request the permission again if the session already has it
+			if ( fSession && ![fSession.permissions containsObject:str])
 			{
-				[publishPermissions addObject:str];
-			}
-			else
-			{
-				[readPermissions addObject:str];
+				// This might need to change if the sdk is upgraded
+				if ( [FBSession isPublishPermission:str] )
+				{
+					[publishPermissions addObject:str];
+				}
+				else
+				{
+					[readPermissions addObject:str];
+				}
 			}
 			
 			[str release];

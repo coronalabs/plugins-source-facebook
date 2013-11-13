@@ -227,7 +227,7 @@ function scene:createScene( event )
 	-- and create a new Facebook application. That will give you the "API key" and "application secret" 
 	-- that should be used in the following lines:
 
-	local appId  = "235285269832478"	-- Add  your App ID here (also go into build.settings and replace XXXXXXXXX with your appId under CFBundleURLSchemes)
+	local appId  = "620459251315981"	-- Add  your App ID here (also go into build.settings and replace XXXXXXXXX with your appId under CFBundleURLSchemes)
 	local apiKey = nil	-- Not needed at this time
 	---------------------------------------------------------------------------------------------------
 
