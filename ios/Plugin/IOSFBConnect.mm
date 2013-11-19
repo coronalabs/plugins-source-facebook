@@ -293,11 +293,8 @@ IOSFBConnect::~IOSFBConnect()
 bool
 IOSFBConnect::Initialize( NSString *appId )
 {
-	if ( nil == fSession )
-	{
-		fSession = FBSession.activeSession;
-	}
-
+	fSession = FBSession.activeSession;
+	
 	if ( fSession.appID )
 	{
 		// Facebook wants us to add a POST so they can track which FB-enabled
@@ -535,41 +532,21 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 		}
 	}
 	
-	if ( ! fSession )
+	if ( ! fSession || ([fSession state] != FBSessionStateOpen && [fSession state] != FBSessionStateOpenTokenExtended) )
 	{
-		FBSessionReauthorizeResultHandler publishHandler = ^( FBSession *publishSession, NSError *publishError )
-		{
-			SessionChanged(publishSession, [FBSession.activeSession state], publishError);
-		};
-		
 		// Callback wrapper
 		FBSessionReauthorizeResultHandler handler = ^( FBSession *session, NSError *error )
 		{
-			if ( publishPermissions && publishPermissions.count > 0 && !error && session )
-			{
-				// You can't have 2 reauthorizations going on at the same time.
-				[session reauthorizeWithPublishPermissions:publishPermissions
-										   defaultAudience:FBSessionDefaultAudienceEveryone
-										 completionHandler:publishHandler];
-			}
-			else
-			{
-				SessionChanged(session, [FBSession.activeSession state], error);
-			}
+			SessionChanged(session, [FBSession.activeSession state], error);
 		};
 		
 		// This will be called when the session is opened
 		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 		[notificationCenter addObserverForName:FBSessionDidBecomeOpenActiveSessionNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-			if ( readPermissions && readPermissions.count > 0 )
-			{
-				// If there are still publishing permissions, those will be reauthorized in the handler.  You can't have 2 reauthorizations going on at the same time.
-				[FBSession.activeSession reauthorizeWithReadPermissions:readPermissions completionHandler:handler];
-			}
-			else if ( publishPermissions && publishPermissions.count > 0 )
+			if ( publishPermissions && publishPermissions.count > 0 )
 			{
 				// After this is done, it will call back to the lua side with a session changed event
-				[FBSession.activeSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:publishHandler];
+				[FBSession.activeSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:handler];
 			}
 			else
 			{
@@ -577,7 +554,12 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 			}
 		}];
 		
-		[FBSession openActiveSessionWithAllowLoginUI:YES];
+		[FBSession openActiveSessionWithReadPermissions:readPermissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
+			if ( error )
+			{
+				SessionChanged(session, [FBSession.activeSession state], error);
+			}
+		}];
 	}
 	else
 	{
