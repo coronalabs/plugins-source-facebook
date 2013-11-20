@@ -407,6 +407,7 @@ IOSFBConnect::Initialize( NSString *appId )
 void
 IOSFBConnect::SessionChanged( FBSession *session, int state, NSError *error ) const
 {
+	fSession = session;
 	switch ( (FBSessionState)state )
 	{
 		case FBSessionStateOpen:
@@ -427,15 +428,13 @@ IOSFBConnect::SessionChanged( FBSession *session, int state, NSError *error ) co
 		{
 			FBConnectSessionEvent e( FBConnectSessionEvent::kLogout, NULL );
 			Dispatch( e );
-			[session closeAndClearTokenInformation];
 			break;
 		}
-
+			
 		case FBSessionStateClosedLoginFailed:
 		{
 			FBConnectSessionEvent e( FBConnectSessionEvent::kLoginFailed, [[error localizedDescription] UTF8String] );
 			Dispatch( e );
-			[session closeAndClearTokenInformation];
 			break;
 		}
 
@@ -456,7 +455,7 @@ IOSFBConnect::ReauthorizationCompleted( FBSession *session, NSError *error ) con
 {
 	// TODO: We need a new event type ("permission") that lets them know
 	// if they succeeded to get the permission.
-	// SessionChanged( fSession, ( error ? FBSessionStateClosedLoginFailed : FBSessionStateOpen ), error );
+	SessionChanged( fSession, ( error ? FBSessionStateClosedLoginFailed : FBSessionStateOpen ), error );
 }
 
 void
@@ -567,7 +566,26 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 		{
 			FBSessionReauthorizeResultHandler publishHandler = ^( FBSession *publishSession, NSError *publishError )
 			{
+				bool release = false;
+				if ( !publishError )
+				{
+					for ( int i = 0; i < [publishPermissions count]; i++)
+					{
+						if ( ![publishSession.permissions containsObject:[publishPermissions objectAtIndex:i]] )
+						{
+							release = true;
+							publishError = [[NSError alloc] initWithDomain:@"com.facebook" code:123 userInfo:nil];
+							break;
+						}
+					}
+				}
+				
 				ReauthorizationCompleted(publishSession, publishError);
+				
+				if ( release )
+				{
+					[publishError release];
+				}
 			};
 			
 			// Callback wrapper
@@ -580,7 +598,26 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 				}
 				else
 				{
+					bool release = false;
+					if ( !error )
+					{
+						for ( int i = 0; i < [readPermissions count]; i++)
+						{
+							if ( ![session.permissions containsObject:[readPermissions objectAtIndex:i]] )
+							{
+								release = true;
+								error = [[NSError alloc] initWithDomain:@"com.facebook" code:123 userInfo:nil];
+								break;
+							}
+						}
+					}
+					
 					ReauthorizationCompleted(session, error);
+					
+					if ( release )
+					{
+						[error release];
+					}
 				}
 			};
 			
@@ -593,11 +630,13 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 				// If there aren't any read permissions and the number of requested permissions is >0 then they have to be publish permissions
 				[fSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:publishHandler];
 			}
-			
+		}
+		else
+		{
+			// Send a login event
+			SessionChanged( fSession, FBSessionStateOpen, nil );
 		}
 		
-		// Send a login event
-		SessionChanged( fSession, FBSessionStateOpen, nil );
 	}
 }
 
