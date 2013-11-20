@@ -630,6 +630,11 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 				// If there aren't any read permissions and the number of requested permissions is >0 then they have to be publish permissions
 				[fSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:publishHandler];
 			}
+			else
+			{
+				// Send a login event
+				SessionChanged( fSession, FBSessionStateOpen, nil );
+			}
 		}
 		else
 		{
