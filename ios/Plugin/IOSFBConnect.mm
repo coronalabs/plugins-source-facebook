@@ -20,6 +20,8 @@
 
 //#import <FacebookSDK/FacebookSDK.h>
 #import "Facebook.h"
+#import <Accounts/ACAccountStore.h>
+#import <Accounts/ACAccountType.h>
 
 #import "FBSBJSON.h"
 
@@ -498,6 +500,21 @@ void
 IOSFBConnect::Close() const
 {
 	[FBSession.activeSession close];
+}
+	
+bool
+IOSFBConnect::IsAccessDenied() const
+{
+	// The constant was introduced in iOS 6 and there is not such setting on iOS 5.
+	if ( &ACAccountTypeIdentifierFacebook == NULL )
+	{
+		return false;
+	}
+	
+	ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+	ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
+	[accountStore release];
+	return !accountType.accessGranted;
 }
 
 void

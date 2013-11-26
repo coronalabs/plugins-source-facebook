@@ -11,7 +11,7 @@
 #include "CoronaLua.h"
 #include "FBConnect.h"
 #include "FBConnectEvent.h"
-
+#include <string.h>
 #include <stdlib.h>
 
 // ----------------------------------------------------------------------------
@@ -57,6 +57,7 @@ class FacebookLibrary
         static int publishInstall( lua_State *L );
 
 	private:
+		static int ValueForKey( lua_State *L );
 		FBConnect *fFBConnect;
 };
 
@@ -90,6 +91,26 @@ FacebookLibrary::FacebookLibrary( lua_State *L )
 FacebookLibrary::~FacebookLibrary()
 {
 	FBConnect::Delete( fFBConnect );
+}
+	
+int
+FacebookLibrary::ValueForKey( lua_State *L )
+{
+	int result = 1;
+
+	Self *library = ToLibrary( L );
+	const char *key = luaL_checkstring( L, 2 );
+	
+	if ( 0 == strcmp( "accessDenied", key ) )
+	{
+		lua_pushboolean( L, library->GetFBConnect()->IsAccessDenied() );
+	}
+	else
+	{
+		result = 0;
+	}
+	
+	return result;
 }
 
 int
@@ -147,7 +168,12 @@ FacebookLibrary::Open( lua_State *L )
 	// Leave "library" on top of stack
 	// Set library as upvalue for each library function
 	int result = CoronaLibraryNew( L, kName, "com.coronalabs", 1, 1, kVTable, library );
-
+	{
+		lua_pushlightuserdata( L, library );
+		lua_pushcclosure( L, ValueForKey, 1 ); // pop ud
+		CoronaLibrarySetExtension( L, -2 ); // pop closure
+	}
+	
 	return result;
 }
 
