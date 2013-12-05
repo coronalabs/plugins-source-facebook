@@ -277,6 +277,7 @@ IOSFBConnect::IOSFBConnect( id< CoronaRuntime > runtime )
 	fSession( nil ),
 	fFacebook( nil ),
 	fFacebookDelegate( [[IOSFBConnectDelegate alloc] initWithOwner:this] ),
+	fHasObserver( false ),
 #ifdef DEBUG_FACEBOOK_ENDPOINT
 	fConnectionDelegate( [[IOSFBConnectConnectionDelegate alloc] init] )
 #else
@@ -556,19 +557,26 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 			SessionChanged(session, [FBSession.activeSession state], error);
 		};
 		
-		// This will be called when the session is opened
-		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-		[notificationCenter addObserverForName:FBSessionDidBecomeOpenActiveSessionNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
-			if ( publishPermissions && publishPermissions.count > 0 )
-			{
-				// After this is done, it will call back to the lua side with a session changed event
-				[FBSession.activeSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:handler];
-			}
-			else
-			{
-				SessionChanged(FBSession.activeSession, [FBSession.activeSession state], nil);
-			}
-		}];
+		// Prevent adding 2 observers which will cause 2 callbacks to happen
+		if ( !fHasObserver )
+		{
+			// This will be called when the session is opened
+			NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+			
+			[notificationCenter addObserverForName:FBSessionDidBecomeOpenActiveSessionNotification object:nil queue:nil usingBlock:^(NSNotification *note) {
+				if ( publishPermissions && publishPermissions.count > 0 )
+				{
+					// After this is done, it will call back to the lua side with a session changed event
+					[FBSession.activeSession reauthorizeWithPublishPermissions:publishPermissions defaultAudience:FBSessionDefaultAudienceEveryone completionHandler:handler];
+				}
+				else
+				{
+					SessionChanged(FBSession.activeSession, [FBSession.activeSession state], nil);
+				}
+			}];
+			fHasObserver = true;
+		}
+		
 		
 		[FBSession openActiveSessionWithReadPermissions:readPermissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 			if ( error )
