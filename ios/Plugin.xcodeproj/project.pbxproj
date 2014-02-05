@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3029B81C16F3C2CD00C89700 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3029B81B16F3C2CD00C89700 /* FacebookSDK.framework */; };
 		A480721316C86B6200960127 /* IOSFBConnect.mm in Sources */ = {isa = PBXBuildFile; fileRef = A480721216C86B6200960127 /* IOSFBConnect.mm */; };
 		A480722216C8CB4100960127 /* FacebookLibrary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480722016C8CB4100960127 /* FacebookLibrary.cpp */; };
 		A480722516C8CBB400960127 /* FBConnect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480722316C8CBB400960127 /* FBConnect.cpp */; };
 		A480725916C9B3F500960127 /* FBConnectEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A480725716C9B3F500960127 /* FBConnectEvent.cpp */; };
+		F87D87DD18A1A78400AB42E1 /* FacebookSDK in Frameworks */ = {isa = PBXBuildFile; fileRef = F87D87DC18A1A78400AB42E1 /* FacebookSDK */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -68,6 +68,7 @@
 		A480725716C9B3F500960127 /* FBConnectEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = FBConnectEvent.cpp; path = ../shared/FBConnectEvent.cpp; sourceTree = "<group>"; };
 		A480725816C9B3F500960127 /* FBConnectEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnectEvent.h; path = ../shared/FBConnectEvent.h; sourceTree = "<group>"; };
 		A4E253B6166D6FB300DCDC2C /* libfacebook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfacebook.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F87D87DC18A1A78400AB42E1 /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FacebookSDK; path = "../../sdk-facebook/ios/FacebookSDK.framework/Versions/A/FacebookSDK"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3029B81C16F3C2CD00C89700 /* FacebookSDK.framework in Frameworks */,
+				F87D87DD18A1A78400AB42E1 /* FacebookSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,6 +156,7 @@
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
+				F87D87DC18A1A78400AB42E1 /* FacebookSDK */,
 				A447B609165D72A6009EA762 /* iOS */,
 				A480721F16C8CA5100960127 /* Shared */,
 				A484111A15114F700074BD57 /* Products */,
@@ -301,6 +303,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -321,6 +327,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
