@@ -23,8 +23,6 @@
 #import <Accounts/ACAccountStore.h>
 #import <Accounts/ACAccountType.h>
 
-#import "FBSBJSON.h"
-
 // ----------------------------------------------------------------------------
 
 static const char kFBConnectEventName[] = "fbconnect";
@@ -703,8 +701,8 @@ IOSFBConnect::Request( lua_State *L, const char *path, const char *httpMethod, i
 		{
 			if ( ! error )
 			{
-				FBSBJSON *converter = [[[FBSBJSON alloc] init] autorelease];
-				NSString *jsonString = [converter stringWithObject:result];
+				NSData *jsonObject = [NSJSONSerialization dataWithJSONObject:result options:0 error:nil];
+				NSString *jsonString = [[NSString alloc] initWithData:jsonObject encoding:NSUTF8StringEncoding];
 				FBConnectRequestEvent e( [jsonString UTF8String], false );
 				Dispatch( e );
 			}
@@ -962,7 +960,7 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 															lua_pushstring( L, placeName );
 															lua_setfield( L, -2, "name" );
 															
-															static int placeWereHere = (int)[placePicker.selection objectForKey:@"were_here_count"];
+															static int placeWereHere = [(NSString*) [placePicker.selection objectForKey:@"were_here_count"] intValue];
 															lua_pushnumber( L, placeWereHere );
 															lua_setfield( L, -2, "wereHere" );
 																														
