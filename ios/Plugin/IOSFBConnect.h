@@ -72,6 +72,9 @@ class IOSFBConnect : public FBConnect
 		virtual bool IsAccessDenied() const;
 
 	private:
+		static bool IsPublishPermission(NSString *permission);
+	
+	private:
 		id< CoronaRuntime > fRuntime;
 		mutable FBSession *fSession;
 		mutable Facebook *fFacebook; // Need this to support Dialogs

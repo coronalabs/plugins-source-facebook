@@ -533,7 +533,7 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 			if ( fSession && ![fSession.permissions containsObject:str])
 			{
 				// This might need to change if the sdk is upgraded
-				if ( [FBSession isPublishPermission:str] )
+				if ( IsPublishPermission(str) )
 				{
 					[publishPermissions addObject:str];
 				}
@@ -1247,6 +1247,17 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 
 		}
 	}
+}
+	
+bool
+IOSFBConnect::IsPublishPermission(NSString *permission)
+{
+	return [permission hasPrefix:@"publish"] ||
+	[permission hasPrefix:@"manage"] ||
+	[permission isEqualToString:@"ads_management"] ||
+	[permission isEqualToString:@"create_event"] ||
+	[permission isEqualToString:@"user_games_activity"] ||
+	[permission isEqualToString:@"rsvp_event"];
 }
 
 // ----------------------------------------------------------------------------
