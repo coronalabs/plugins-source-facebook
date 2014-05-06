@@ -75,7 +75,6 @@
 		A484118915128D5D0074BD57 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117515128D5D0074BD57 /* StoreKit.framework */; };
 		A484118A15128D5D0074BD57 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484117615128D5D0074BD57 /* SystemConfiguration.framework */; };
 		A48411CA15129F610074BD57 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A48411C915129F610074BD57 /* libsqlite3.dylib */; };
-		A4C2446A1683F5F200C395D1 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A4C244691683F5F200C395D1 /* FacebookSDKResources.bundle */; };
 		A4C2449A1683FA5300C395D1 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C244971683FA5300C395D1 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A4C2449B1683FA5300C395D1 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C244981683FA5300C395D1 /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		A4C2449C1683FA5300C395D1 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A4C244991683FA5300C395D1 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -83,6 +82,7 @@
 		A4E253E5166DE7E000DCDC2C /* libfacebook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A4E253E2166DE7C800DCDC2C /* libfacebook.a */; };
 		F883235718340036004DEBC5 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F883235618340036004DEBC5 /* CoreVideo.framework */; };
 		F88323581834003D004DEBC5 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A484112315114F700074BD57 /* GLKit.framework */; };
+		F8BAC0EF191979AB00BC30D7 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F8BAC0EE191979AB00BC30D7 /* FBUserSettingsViewResources.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -184,6 +184,7 @@
 		A4E2537E166AE3DC00DCDC2C /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Plugin.xcodeproj; sourceTree = "<group>"; };
 		F883235618340036004DEBC5 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F8BAC0EE191979AB00BC30D7 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = "../../sdk-facebook/ios/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +301,7 @@
 		A484110E15114F700074BD57 = {
 			isa = PBXGroup;
 			children = (
+				F8BAC0EE191979AB00BC30D7 /* FBUserSettingsViewResources.bundle */,
 				303299E817737ED200DC0D82 /* CoronaResources.bundle */,
 				303B9A8F16E66C4700CDB84F /* Default-568h@2x.png */,
 				A4E253DA166DE7C800DCDC2C /* Plugin.xcodeproj */,
@@ -471,11 +473,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F8BAC0EF191979AB00BC30D7 /* FBUserSettingsViewResources.bundle in Resources */,
 				A484112C15114F700074BD57 /* InfoPlist.strings in Resources */,
 				A447B6671666FD02009EA762 /* MainWindow-iPad.xib in Resources */,
 				A447B6681666FD02009EA762 /* MainWindow.xib in Resources */,
 				A447B66A1666FD43009EA762 /* CoronaSDK3rdPartyLicenses.txt in Resources */,
-				A4C2446A1683F5F200C395D1 /* FacebookSDKResources.bundle in Resources */,
 				303B9A9016E66C4700CDB84F /* Default-568h@2x.png in Resources */,
 				3070C56016F3C537002B4870 /* action-eating.png in Resources */,
 				3070C56116F3C537002B4870 /* action-location.png in Resources */,

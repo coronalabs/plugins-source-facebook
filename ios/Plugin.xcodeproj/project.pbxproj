@@ -37,58 +37,6 @@
 		A480725816C9B3F500960127 /* FBConnectEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBConnectEvent.h; path = ../shared/FBConnectEvent.h; sourceTree = "<group>"; };
 		A4E253B6166D6FB300DCDC2C /* libfacebook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libfacebook.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F89DBEF3191308500072FA2A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = "../../sdk-facebook/ios/FacebookSDK.framework"; sourceTree = "<group>"; };
-		F89DBEF51913085D0072FA2A /* Facebook.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Facebook.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/Facebook.h"; sourceTree = "<group>"; };
-		F89DBEF61913085D0072FA2A /* FacebookSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FacebookSDK.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FacebookSDK.h"; sourceTree = "<group>"; };
-		F89DBEF71913085D0072FA2A /* FBAccessTokenData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBAccessTokenData.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAccessTokenData.h"; sourceTree = "<group>"; };
-		F89DBEF81913085D0072FA2A /* FBAppCall.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBAppCall.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAppCall.h"; sourceTree = "<group>"; };
-		F89DBEF91913085D0072FA2A /* FBAppEvents.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBAppEvents.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAppEvents.h"; sourceTree = "<group>"; };
-		F89DBEFA1913085D0072FA2A /* FBAppLinkData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBAppLinkData.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAppLinkData.h"; sourceTree = "<group>"; };
-		F89DBEFB1913085D0072FA2A /* FBAppLinkResolver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBAppLinkResolver.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBAppLinkResolver.h"; sourceTree = "<group>"; };
-		F89DBEFC1913085D0072FA2A /* FBCacheDescriptor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBCacheDescriptor.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBCacheDescriptor.h"; sourceTree = "<group>"; };
-		F89DBEFD1913085D0072FA2A /* FBColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBColor.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBColor.h"; sourceTree = "<group>"; };
-		F89DBEFE1913085D0072FA2A /* FBConnect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBConnect.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBConnect.h"; sourceTree = "<group>"; };
-		F89DBEFF1913085D0072FA2A /* FBDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBDialog.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialog.h"; sourceTree = "<group>"; };
-		F89DBF001913085D0072FA2A /* FBDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBDialogs.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialogs.h"; sourceTree = "<group>"; };
-		F89DBF011913085D0072FA2A /* FBDialogsData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBDialogsData.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialogsData.h"; sourceTree = "<group>"; };
-		F89DBF021913085D0072FA2A /* FBDialogsParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBDialogsParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBDialogsParams.h"; sourceTree = "<group>"; };
-		F89DBF031913085D0072FA2A /* FBError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBError.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBError.h"; sourceTree = "<group>"; };
-		F89DBF041913085D0072FA2A /* FBErrorUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBErrorUtility.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBErrorUtility.h"; sourceTree = "<group>"; };
-		F89DBF051913085D0072FA2A /* FBFrictionlessRecipientCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBFrictionlessRecipientCache.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFrictionlessRecipientCache.h"; sourceTree = "<group>"; };
-		F89DBF061913085D0072FA2A /* FBFrictionlessRequestSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBFrictionlessRequestSettings.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFrictionlessRequestSettings.h"; sourceTree = "<group>"; };
-		F89DBF071913085D0072FA2A /* FBFriendPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBFriendPickerViewController.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBFriendPickerViewController.h"; sourceTree = "<group>"; };
-		F89DBF081913085D0072FA2A /* FBGraphLocation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBGraphLocation.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphLocation.h"; sourceTree = "<group>"; };
-		F89DBF091913085D0072FA2A /* FBGraphObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBGraphObject.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphObject.h"; sourceTree = "<group>"; };
-		F89DBF0A1913085D0072FA2A /* FBGraphPlace.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBGraphPlace.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphPlace.h"; sourceTree = "<group>"; };
-		F89DBF0B1913085D0072FA2A /* FBGraphUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBGraphUser.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBGraphUser.h"; sourceTree = "<group>"; };
-		F89DBF0C1913085D0072FA2A /* FBInsights.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBInsights.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBInsights.h"; sourceTree = "<group>"; };
-		F89DBF0D1913085D0072FA2A /* FBLikeControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBLikeControl.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLikeControl.h"; sourceTree = "<group>"; };
-		F89DBF0E1913085D0072FA2A /* FBLinkShareParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBLinkShareParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLinkShareParams.h"; sourceTree = "<group>"; };
-		F89DBF0F1913085D0072FA2A /* FBLoginDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBLoginDialog.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginDialog.h"; sourceTree = "<group>"; };
-		F89DBF101913085D0072FA2A /* FBLoginTooltipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBLoginTooltipView.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginTooltipView.h"; sourceTree = "<group>"; };
-		F89DBF111913085D0072FA2A /* FBLoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBLoginView.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBLoginView.h"; sourceTree = "<group>"; };
-		F89DBF121913085D0072FA2A /* FBNativeDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBNativeDialogs.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBNativeDialogs.h"; sourceTree = "<group>"; };
-		F89DBF131913085D0072FA2A /* FBOpenGraphAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBOpenGraphAction.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphAction.h"; sourceTree = "<group>"; };
-		F89DBF141913085D0072FA2A /* FBOpenGraphActionParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBOpenGraphActionParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphActionParams.h"; sourceTree = "<group>"; };
-		F89DBF151913085D0072FA2A /* FBOpenGraphActionShareDialogParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBOpenGraphActionShareDialogParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphActionShareDialogParams.h"; sourceTree = "<group>"; };
-		F89DBF161913085D0072FA2A /* FBOpenGraphObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBOpenGraphObject.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBOpenGraphObject.h"; sourceTree = "<group>"; };
-		F89DBF171913085D0072FA2A /* FBPhotoParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBPhotoParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBPhotoParams.h"; sourceTree = "<group>"; };
-		F89DBF181913085D0072FA2A /* FBPlacePickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBPlacePickerViewController.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBPlacePickerViewController.h"; sourceTree = "<group>"; };
-		F89DBF191913085D0072FA2A /* FBProfilePictureView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBProfilePictureView.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBProfilePictureView.h"; sourceTree = "<group>"; };
-		F89DBF1A1913085D0072FA2A /* FBRequest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBRequest.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBRequest.h"; sourceTree = "<group>"; };
-		F89DBF1B1913085D0072FA2A /* FBRequestConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBRequestConnection.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBRequestConnection.h"; sourceTree = "<group>"; };
-		F89DBF1C1913085D0072FA2A /* FBSDKMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBSDKMacros.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSDKMacros.h"; sourceTree = "<group>"; };
-		F89DBF1D1913085D0072FA2A /* FBSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBSession.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSession.h"; sourceTree = "<group>"; };
-		F89DBF1E1913085D0072FA2A /* FBSessionManualTokenCachingStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBSessionManualTokenCachingStrategy.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSessionManualTokenCachingStrategy.h"; sourceTree = "<group>"; };
-		F89DBF1F1913085D0072FA2A /* FBSessionTokenCachingStrategy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBSessionTokenCachingStrategy.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSessionTokenCachingStrategy.h"; sourceTree = "<group>"; };
-		F89DBF201913085D0072FA2A /* FBSettings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBSettings.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBSettings.h"; sourceTree = "<group>"; };
-		F89DBF211913085D0072FA2A /* FBShareDialogParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBShareDialogParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBShareDialogParams.h"; sourceTree = "<group>"; };
-		F89DBF221913085D0072FA2A /* FBShareDialogPhotoParams.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBShareDialogPhotoParams.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBShareDialogPhotoParams.h"; sourceTree = "<group>"; };
-		F89DBF231913085D0072FA2A /* FBTestSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBTestSession.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBTestSession.h"; sourceTree = "<group>"; };
-		F89DBF241913085D0072FA2A /* FBTooltipView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBTooltipView.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBTooltipView.h"; sourceTree = "<group>"; };
-		F89DBF251913085D0072FA2A /* FBUserSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBUserSettingsViewController.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBUserSettingsViewController.h"; sourceTree = "<group>"; };
-		F89DBF261913085D0072FA2A /* FBViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBViewController.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBViewController.h"; sourceTree = "<group>"; };
-		F89DBF271913085D0072FA2A /* FBWebDialogs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FBWebDialogs.h; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/FBWebDialogs.h"; sourceTree = "<group>"; };
-		F89DBF281913085D0072FA2A /* NSError+FBError.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSError+FBError.h"; path = "../../../../../../../../../Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/NSError+FBError.h"; sourceTree = "<group>"; };
 		F89DBF2B191309460072FA2A /* FacebookSDK */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = FacebookSDK; path = "../../sdk-facebook/ios/FacebookSDK.framework/Versions/A/FacebookSDK"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -104,66 +52,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3029B81D16F3C2F800C89700 /* DeprecatedHeaders */ = {
-			isa = PBXGroup;
-			children = (
-				F89DBEF51913085D0072FA2A /* Facebook.h */,
-				F89DBEF61913085D0072FA2A /* FacebookSDK.h */,
-				F89DBEF71913085D0072FA2A /* FBAccessTokenData.h */,
-				F89DBEF81913085D0072FA2A /* FBAppCall.h */,
-				F89DBEF91913085D0072FA2A /* FBAppEvents.h */,
-				F89DBEFA1913085D0072FA2A /* FBAppLinkData.h */,
-				F89DBEFB1913085D0072FA2A /* FBAppLinkResolver.h */,
-				F89DBEFC1913085D0072FA2A /* FBCacheDescriptor.h */,
-				F89DBEFD1913085D0072FA2A /* FBColor.h */,
-				F89DBEFE1913085D0072FA2A /* FBConnect.h */,
-				F89DBEFF1913085D0072FA2A /* FBDialog.h */,
-				F89DBF001913085D0072FA2A /* FBDialogs.h */,
-				F89DBF011913085D0072FA2A /* FBDialogsData.h */,
-				F89DBF021913085D0072FA2A /* FBDialogsParams.h */,
-				F89DBF031913085D0072FA2A /* FBError.h */,
-				F89DBF041913085D0072FA2A /* FBErrorUtility.h */,
-				F89DBF051913085D0072FA2A /* FBFrictionlessRecipientCache.h */,
-				F89DBF061913085D0072FA2A /* FBFrictionlessRequestSettings.h */,
-				F89DBF071913085D0072FA2A /* FBFriendPickerViewController.h */,
-				F89DBF081913085D0072FA2A /* FBGraphLocation.h */,
-				F89DBF091913085D0072FA2A /* FBGraphObject.h */,
-				F89DBF0A1913085D0072FA2A /* FBGraphPlace.h */,
-				F89DBF0B1913085D0072FA2A /* FBGraphUser.h */,
-				F89DBF0C1913085D0072FA2A /* FBInsights.h */,
-				F89DBF0D1913085D0072FA2A /* FBLikeControl.h */,
-				F89DBF0E1913085D0072FA2A /* FBLinkShareParams.h */,
-				F89DBF0F1913085D0072FA2A /* FBLoginDialog.h */,
-				F89DBF101913085D0072FA2A /* FBLoginTooltipView.h */,
-				F89DBF111913085D0072FA2A /* FBLoginView.h */,
-				F89DBF121913085D0072FA2A /* FBNativeDialogs.h */,
-				F89DBF131913085D0072FA2A /* FBOpenGraphAction.h */,
-				F89DBF141913085D0072FA2A /* FBOpenGraphActionParams.h */,
-				F89DBF151913085D0072FA2A /* FBOpenGraphActionShareDialogParams.h */,
-				F89DBF161913085D0072FA2A /* FBOpenGraphObject.h */,
-				F89DBF171913085D0072FA2A /* FBPhotoParams.h */,
-				F89DBF181913085D0072FA2A /* FBPlacePickerViewController.h */,
-				F89DBF191913085D0072FA2A /* FBProfilePictureView.h */,
-				F89DBF1A1913085D0072FA2A /* FBRequest.h */,
-				F89DBF1B1913085D0072FA2A /* FBRequestConnection.h */,
-				F89DBF1C1913085D0072FA2A /* FBSDKMacros.h */,
-				F89DBF1D1913085D0072FA2A /* FBSession.h */,
-				F89DBF1E1913085D0072FA2A /* FBSessionManualTokenCachingStrategy.h */,
-				F89DBF1F1913085D0072FA2A /* FBSessionTokenCachingStrategy.h */,
-				F89DBF201913085D0072FA2A /* FBSettings.h */,
-				F89DBF211913085D0072FA2A /* FBShareDialogParams.h */,
-				F89DBF221913085D0072FA2A /* FBShareDialogPhotoParams.h */,
-				F89DBF231913085D0072FA2A /* FBTestSession.h */,
-				F89DBF241913085D0072FA2A /* FBTooltipView.h */,
-				F89DBF251913085D0072FA2A /* FBUserSettingsViewController.h */,
-				F89DBF261913085D0072FA2A /* FBViewController.h */,
-				F89DBF271913085D0072FA2A /* FBWebDialogs.h */,
-				F89DBF281913085D0072FA2A /* NSError+FBError.h */,
-			);
-			name = DeprecatedHeaders;
-			path = "/Applications/CoronaEnterprise/Plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders";
-			sourceTree = "<absolute>";
-		};
 		A447B609165D72A6009EA762 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,7 +65,6 @@
 			isa = PBXGroup;
 			children = (
 				F89DBF2B191309460072FA2A /* FacebookSDK */,
-				3029B81D16F3C2F800C89700 /* DeprecatedHeaders */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -342,20 +229,14 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../sdk-facebook/ios\"",
 					"\"$(SYSTEM_APPS_DIR)/CoronaEnterprise/Plugins/sdk-facebook/ios\"",
-					"/Users/dannychan/Desktop/facebook/sdk-facebook/ios",
-					"/Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A",
-					"/Users/dannychan/Desktop/facebook/sdk-facebook/ios/FacebookSDK.framework/Versions/A",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/CoronaEnterprise/Corona/shared/include/Corona ${SRCROOT}/CoronaEnterprise/Corona/shared/include/lua ${SRCROOT}/CoronaEnterprise/Corona/ios/include/Corona";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/CoronaEnterprise/Corona/shared/include/Corona ${SRCROOT}/CoronaEnterprise/Corona/shared/include/lua ${SRCROOT}/CoronaEnterprise/Corona/ios/include/Corona $(SRCROOT)/../../sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/";
 			};
 			name = Debug;
 		};
@@ -369,20 +250,14 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../sdk-facebook/ios\"",
 					"\"$(SYSTEM_APPS_DIR)/CoronaEnterprise/Plugins/sdk-facebook/ios\"",
-					"/Users/dannychan/Desktop/facebook/sdk-facebook/ios",
-					"/Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"/Users/dannychan/src/main-tachyon/plugins/sdk-facebook/ios/FacebookSDK.framework/Versions/A",
-					"/Users/dannychan/Desktop/facebook/sdk-facebook/ios/FacebookSDK.framework/Versions/A",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/CoronaEnterprise/Corona/shared/include/Corona ${SRCROOT}/CoronaEnterprise/Corona/shared/include/lua ${SRCROOT}/CoronaEnterprise/Corona/ios/include/Corona";
+				USER_HEADER_SEARCH_PATHS = "${SRCROOT}/CoronaEnterprise/Corona/shared/include/Corona ${SRCROOT}/CoronaEnterprise/Corona/shared/include/lua ${SRCROOT}/CoronaEnterprise/Corona/ios/include/Corona $(SRCROOT)/../../sdk-facebook/ios/FacebookSDK.framework/Versions/A/DeprecatedHeaders/";
 			};
 			name = Release;
 		};
