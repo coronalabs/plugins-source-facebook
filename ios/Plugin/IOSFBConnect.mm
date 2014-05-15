@@ -492,7 +492,11 @@ IOSFBConnect::Open( const char *url ) const
 void
 IOSFBConnect::Resume() const
 {
-	[FBSession.activeSession handleDidBecomeActive];
+	try {
+		[FBSession.activeSession handleDidBecomeActive];
+	} catch (NSException *e) {
+		NSLog(@"%@", e.reason);
+	}
 }
 
 void
