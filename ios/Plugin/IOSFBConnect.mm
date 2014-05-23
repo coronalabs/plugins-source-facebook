@@ -675,6 +675,8 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 void
 IOSFBConnect::Logout() const
 {
+	SessionChanged( nil, FBSessionStateClosed, nil);
+	
 	[fSession closeAndClearTokenInformation];
 	fSession = nil;
 
