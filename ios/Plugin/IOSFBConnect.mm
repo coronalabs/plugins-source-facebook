@@ -675,13 +675,13 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 void
 IOSFBConnect::Logout() const
 {
-	SessionChanged( nil, FBSessionStateClosed, nil);
-	
 	[fSession closeAndClearTokenInformation];
 	fSession = nil;
 
 	[fFacebook autorelease]; // TODO: Figure out better fix for the KVC error msg. Right now we "defer" release via autorelease.
 	fFacebook = nil;
+
+	SessionChanged( nil, FBSessionStateClosed, nil);
 }
 
 void
