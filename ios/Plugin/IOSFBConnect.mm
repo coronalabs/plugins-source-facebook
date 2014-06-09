@@ -1061,14 +1061,9 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 	
 		// Set up the friend picker to sort and display names the same way as the
 		// iOS Address Book does.
-            
-		// Need to call ABAddressBookCreate in order for the next two calls to do anything.
-		ABAddressBookRef addressBook = ABAddressBookCreate();
-		ABPersonSortOrdering sortOrdering = ABPersonGetSortOrdering();
-		ABPersonCompositeNameFormat nameFormat = ABPersonGetCompositeNameFormat();
-            
-		friendPicker.sortOrdering = (sortOrdering == kABPersonSortByFirstName) ? FBFriendSortByFirstName : FBFriendSortByLastName;
-		friendPicker.displayOrdering = (nameFormat == kABPersonCompositeNameFormatFirstNameFirst) ? FBFriendDisplayByFirstName : FBFriendDisplayByLastName;
+        
+		friendPicker.sortOrdering = FBFriendSortByLastName;
+		friendPicker.displayOrdering = FBFriendDisplayByFirstName;
         
 		// Load the data
 		[friendPicker loadData];
@@ -1190,8 +1185,6 @@ IOSFBConnect::ShowDialog( lua_State *L, int index ) const
 															}
 														}
                                                    }];
-
-		CFRelease( addressBook );
 	}
 	
 	// Standard facebook.showDialog
