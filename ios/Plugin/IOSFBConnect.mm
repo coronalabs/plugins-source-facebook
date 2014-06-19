@@ -550,7 +550,17 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 			[str release];
 		}
 	}
+
+	NSString *applicationId = [NSString stringWithUTF8String:appId];
 	
+	dispatch_async( dispatch_get_main_queue(), ^() {
+		LoginAsync( applicationId, readPermissions, publishPermissions );
+	} );
+}
+	
+void
+IOSFBConnect::LoginAsync( NSString *applicationId, NSArray *readPermissions, NSArray *publishPermissions ) const
+{
 	if ( ! fSession || ([fSession state] != FBSessionStateOpen && [fSession state] != FBSessionStateOpenTokenExtended) )
 	{
 		// Callback wrapper
@@ -558,7 +568,6 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 		{
 			SessionChanged(session, [FBSession.activeSession state], error);
 		};
-		
 		// Prevent adding 2 observers which will cause 2 callbacks to happen
 		if ( !fHasObserver )
 		{
@@ -579,7 +588,6 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 			fHasObserver = true;
 		}
 		
-		
 		[FBSession openActiveSessionWithReadPermissions:readPermissions allowLoginUI:YES completionHandler:^(FBSession *session, FBSessionState status, NSError *error) {
 			if ( error )
 			{
@@ -589,6 +597,8 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 	}
 	else
 	{
+		int numPermissions = [readPermissions count] + [publishPermissions count];
+
 		if ( numPermissions > 0 )
 		{
 			FBSessionReauthorizeResultHandler publishHandler = ^( FBSession *publishSession, NSError *publishError )
@@ -668,7 +678,6 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 			// Send a login event
 			SessionChanged( fSession, FBSessionStateOpen, nil );
 		}
-		
 	}
 }
 

@@ -23,6 +23,7 @@
 @class Facebook;
 @class FBSession;
 @class IOSFBConnectDelegate;
+@class NSArray;
 @class NSError;
 @class NSString;
 @class NSURL;
@@ -70,6 +71,9 @@ class IOSFBConnect : public FBConnect
 		virtual void ShowDialog( lua_State *L, int index ) const;
         virtual void PublishInstall( const char *appId ) const;
 		virtual bool IsAccessDenied() const;
+
+	protected:
+		void LoginAsync( NSString *applicationId, NSArray *readPermissions, NSArray *publishPermissions ) const;
 
 	private:
 		static bool IsPublishPermission(NSString *permission);
