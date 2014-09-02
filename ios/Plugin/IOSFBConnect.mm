@@ -534,7 +534,7 @@ IOSFBConnect::Login( const char *appId, const char *permissions[], int numPermis
 		{
 			NSString *str = [[NSString alloc] initWithUTF8String:permissions[i]];
 			// Don't request the permission again if the session already has it
-			if ( fSession && ![fSession.permissions containsObject:str])
+			if ( ( fSession && ![fSession.permissions containsObject:str] ) || !fSession )
 			{
 				// This might need to change if the sdk is upgraded
 				if ( IsPublishPermission(str) )

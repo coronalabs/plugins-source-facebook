@@ -12,9 +12,9 @@ cd -
 #./build.sh ../../build/facebook/mac/
 #cd -
 
-#cd $path/android
-#./build.sh
-#cd -
+cd $path/android
+./build.sh
+cd -
 
 # echo "Succeeded in building: iOS, Mac, Android"
 # echo "You must build windows separately"
