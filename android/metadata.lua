@@ -18,7 +18,7 @@ local metadata =
 		<activity android:name="com.facebook.LoginActivity"
 				  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
 				  android:configChanges="keyboardHidden|screenSize|orientation"/>
-		<activity android:name="com.ansca.corona.facebook.FacebookFragmentActivity"
+		<activity android:name="facebook.FacebookFragmentActivity"
 				  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" 
 				  android:configChanges="keyboardHidden|screenSize|orientation"/>]],
 			},

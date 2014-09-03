@@ -8,8 +8,6 @@ import com.ansca.corona.CoronaRuntime;
 
 import com.ansca.corona.events.EventManager;
 
-import com.ansca.corona.facebook.FacebookFragmentActivity;
-
 import java.util.Arrays; 
 import java.util.Hashtable;
 import java.util.LinkedList;
