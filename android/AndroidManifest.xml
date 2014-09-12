@@ -38,7 +38,7 @@
 		          android:label="Facebook Test App"
 		          android:launchMode="singleTask"
 		          android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
-			<intent-filter>
+		    <intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
@@ -60,7 +60,6 @@
 		<activity android:name="com.ansca.corona.purchasing.StoreActivity"
 		          android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
 		          android:configChanges="keyboardHidden|screenSize|orientation" />
-		
 		<!-- Corona content provider required by the video player and mail app to access this app's local files. -->
 		<provider android:name="com.ansca.corona.storage.FileContentProvider"
 		          android:authorities="com.ansca.test.Corona.files" />
@@ -102,5 +101,7 @@
 				<action android:name="com.android.vending.billing.PURCHASE_STATE_CHANGED" />
 			</intent-filter>
 		</receiver>
+		<activity android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:name="com.facebook.LoginActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
+        <activity android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:name="facebook.FacebookFragmentActivity" android:configChanges="keyboardHidden|orientation|screenSize" />
 	</application>
 </manifest>

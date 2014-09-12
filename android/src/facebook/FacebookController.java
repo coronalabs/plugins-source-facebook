@@ -25,7 +25,7 @@ import android.os.Looper;
 import android.net.Uri;
 
 import com.facebook.HttpMethod;
-import com.facebook.Settings;
+import com.facebook.AppEventsLogger;
 import com.facebook.Session;
 import com.facebook.SessionLoginBehavior;
 import com.facebook.SessionState;
@@ -153,7 +153,6 @@ public class FacebookController {
 			mySession.addCallback(new FacebookEventHandler(runtime, permissions));
 
 			mySession.openForRead(request);
-
 		}
 		else
 		{
@@ -423,6 +422,6 @@ public class FacebookController {
 
 	public static void publishInstall( String appId )
 	{
-		Settings.publishInstallAsync(CoronaEnvironment.getApplicationContext(), appId);
+		AppEventsLogger.activateApp(CoronaEnvironment.getApplicationContext(), appId);
 	}
 }
