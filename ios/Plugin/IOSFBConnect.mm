@@ -25,10 +25,6 @@
 
 // ----------------------------------------------------------------------------
 
-static const char kFBConnectEventName[] = "fbconnect";
-
-// ----------------------------------------------------------------------------
-
 @interface IOSFBConnectDelegate : NSObject< FBDialogDelegate >
 {
 	Corona::IOSFBConnect *fOwner;
@@ -728,7 +724,7 @@ IOSFBConnect::Request( lua_State *L, const char *path, const char *httpMethod, i
 			}
 		};
 
-		FBRequestConnection *connection = [FBRequestConnection startWithGraphPath:pathString parameters:params HTTPMethod:httpMethodString completionHandler:handler];
+		[FBRequestConnection startWithGraphPath:pathString parameters:params HTTPMethod:httpMethodString completionHandler:handler];
 	}
 }
     
@@ -736,7 +732,7 @@ void
 IOSFBConnect::PublishInstall(const char *appId) const
 {
     NSString *applicationId = [NSString stringWithUTF8String:appId];
-    [FBSettings publishInstall:applicationId];
+    [FBAppEvents activateApp];
 }
 
 void
