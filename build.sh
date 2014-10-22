@@ -13,7 +13,7 @@ cd -
 #cd -
 
 cd $path/android
-./build.sh
+./build.plugin.sh
 cd -
 
 # echo "Succeeded in building: iOS, Mac, Android"

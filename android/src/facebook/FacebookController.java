@@ -8,6 +8,7 @@ import com.ansca.corona.CoronaRuntime;
 
 import com.ansca.corona.events.EventManager;
 
+import java.io.File;
 import java.util.Arrays; 
 import java.util.Hashtable;
 import java.util.LinkedList;
@@ -399,8 +400,8 @@ public class FacebookController {
 					String key = entry.getKey();
 					Object value = entry.getValue();
 
-					if (value instanceof java.io.File) {
-						byte[] bytes = fileServices.getBytesFromFile(((java.io.File)value).getPath());
+					if (value instanceof File) {
+						byte[] bytes = fileServices.getBytesFromFile(((File)value).getPath());
 						if (bytes != null) {
 							result.putByteArray( key, bytes );
 						}
@@ -412,7 +413,19 @@ public class FacebookController {
 						result.putStringArray( key, (String[])value );
 					}
 					else if (value != null) {
-						result.putString( key, value.toString() );
+						boolean done = false;
+						File f = new File(value.toString());
+						if (f.exists()) {
+							byte[] bytes = fileServices.getBytesFromFile(f);
+							if (bytes != null) {
+								result.putByteArray( key, bytes );
+								done = true;
+							}
+						}
+
+						if (!done) {
+							result.putString( key, value.toString() );
+						}
 					}
 				}
 			}
