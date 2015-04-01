@@ -21,4 +21,3 @@ Install [CoronaEnterprise](http://coronalabs.com/products/enterprise/).
 
 * [Corona Enterprise](http://docs.coronalabs.com/native/)
 * [API Reference](http://docs.coronalabs.com/plugin/facebook/index.html)
-* [Sample Code](GITHUB_URL/samples)
